@@ -38,7 +38,7 @@ const LinkAction = ({ imgIcon, alt, children } : LinkActionProps) => {
        return (
               <div className='flex items-center'>
                      <Image src={imgIcon} alt={alt} />
-                     <Link href="/admin/dashboard/create">
+                     <Link href="">
                             { children }
                      </Link>
               </div>
@@ -57,7 +57,7 @@ const Appbar = () => {
                                           <div className="relative text-gray-600 focus-within:text-gray-400">
                                                  <span className="absolute inset-y-0 left-0 flex items-center pl-2 pr-[19px]">
                                                         <button type="submit" className="p-1 focus:outline-none focus:shadow-outline">
-                                                               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" className="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                                               <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" viewBox="0 0 24 24" className="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                                         </button>
                                                  </span>
                                                  <input type="search" name="query" className="w-full border border-gray-200 py-2 px-4 text-sm text-white bg-white rounded-[4px] pl-10 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Cari" autoComplete="on" />
@@ -67,12 +67,12 @@ const Appbar = () => {
                             {/* Button Action */}
                             <div className="w-[40%] h-12 flex items-center justify-between">
                                    {/* Create Button */}
-                                   <div className="w-[123px] text-center font-bold ml-0 md:ml-1 no-underline flex items-center px-4 py-[10px] leading-none bg-blue-800 border-blue-800 border rounded text-white hover:border-transparent hover:bg-white hover:text-blue-800 mt-4 sm:mt-0" >
-                                          <LinkAction imgIcon={IconCreate} alt="briefcase" children="Create" />
+                                   <div className="w-[123px] text-center font-bold ml-0 md:ml-1 no-underline flex items-center px-4 py-[10px] leading-none bg-blue-700 border-blue-700 border rounded text-white hover:border-transparent hover:bg-blue-800 mt-4 sm:mt-0" >
+                                          <LinkAction imgIcon={IconCreate} alt="briefcase" children="Buat" />
                                    </div>
                                    {/* Language Translation */}
-                                   <div className="w-auto text-center font-bold ml-0 md:ml-1 no-underline flex items-center px-4 py-[11px] leading-none bg-white border rounded text-blue-800 hover:border-transparent hover:bg-blue-800 hover:text-white mt-4 sm:mt-0" >
-                                          <Link href="/admin/dashboard/create">
+                                   <div className="w-auto text-center font-bold ml-0 md:ml-1 no-underline flex items-center px-4 py-[11px] leading-none bg-white border rounded text-blue-800 hover:border-transparent  mt-4 sm:mt-0" >
+                                          <Link href="">
                                                  ENG
                                           </Link>
                                    </div>

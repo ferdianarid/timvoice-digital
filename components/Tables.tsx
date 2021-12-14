@@ -36,7 +36,7 @@ const Tables = () => {
               <React.Fragment>
                      <table className="text-blue-800 m-5 w-full mx-auto">
                             <tr className="text-left border-b-2 border-indigo-300">
-                                   <th><input type="checkbox" className="form-checkbox h-5 w-5 text-dark" name="" id="" checked /></th>
+                                   <th><input type="checkbox" className="form-checkbox h-5 w-5 text-dark" name="" id="" defaultChecked /></th>
                                    <th className="px-4 py-3">ID</th>
                                    <th className="px-4 py-3">Dibuat</th>
                                    <th className="px-4 py-3">Klien</th>

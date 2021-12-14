@@ -40,7 +40,7 @@ const FormActions = ( ) => {
                                           {/* <!-- Input Checkbox --> */}
                                           <div className="mb-4">
                                                  <label htmlFor="checkbox" className="inline-flex items-center">
-                                                        <input type="checkbox" className="form-checkbox h-5 w-5 text-dark" name="" id="" checked />
+                                                        <input type="checkbox" className="form-checkbox h-5 w-5 text-dark" name="" id="" defaultChecked />
                                                         <span className="text-blue-800 pl-2">Remember me</span>
                                                  </label>
                                           </div>
@@ -64,7 +64,7 @@ const FormActions = ( ) => {
                                           {/* <!-- Input Checkbox --> */}
                                           <div className="mb-4">
                                                  <label htmlFor="checkbox" className="inline-flex items-center">
-                                                        <input type="checkbox" className="form-checkbox h-5 w-5 text-dark" name="" id="" checked />
+                                                        <input type="checkbox" className="form-checkbox h-5 w-5 text-dark" name="" id="" defaultChecked />
                                                         <span className="text-blue-800 pl-2">Remember me</span>
                                                  </label>
                                           </div>
