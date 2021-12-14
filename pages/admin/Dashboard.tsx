@@ -13,6 +13,9 @@ import RecentActivity from '../../components/RecentActivity'
 import RecentInvoices from '../../components/RecentInvoices'
 import { Profile, ProfileCard } from "../../components/content/Profile"
 
+// import Dashboard Layouts
+import DashboardLayouts from '../../layouts/DashboardLayouts'
+
 // Import Assets Images
 import ProfileIcon from "../../public/profile.svg"
 import BusinessIcon from "../../public/bussiness.svg"
@@ -27,10 +30,7 @@ const Dashboard: NextPage = () => {
 				<meta httpEquiv="X-UA Compatible" content="IE-Edge" />
 				<meta name="author" content="timvoice corp" />
 			</Head>
-			<div className="w-full max-w-[1440px] mx-auto flex">
-				<Sidebar />
-				<div className="flex w-full ml-[240px] h-24 flex-col">
-                     		<Appbar />
+			<DashboardLayouts>
 					{/* <!-- Profiile Completeness --> */}
                      		<Profile />
 					{/* <!-- Summary and Revenue --> */}
@@ -121,8 +121,7 @@ const Dashboard: NextPage = () => {
 							<RecentInvoices />
 						</div>
 					</div>
-				</div>
-			</div>
+                     </DashboardLayouts>
 		</React.Fragment>
 	)
 }

@@ -1,25 +1,22 @@
-import React from 'react'
 import { NextPage } from 'next'
 import Head from "next/head"
-
-// import Dashboard Layouts
+import React from 'react'
 import DashboardLayouts from '../../../layouts/DashboardLayouts'
 
-// Invoices Page
-const Invoices: NextPage = () => {
+const Contract: NextPage = () => {
        return (
               <React.Fragment>
                      <Head>
-				<title>Invoices - Timvoice</title>
-				<meta name="description" content="invoices invoice" />
+				<title>Contract - Timvoice</title>
+				<meta name="description" content="contract invoice" />
 				<meta httpEquiv="X-UA Compatible" content="IE-Edge" />
 				<meta name="author" content="timvoice corp" />
 			</Head>
                      <DashboardLayouts>
-                            
+
                      </DashboardLayouts>
               </React.Fragment>
        )
 }
 
-export default Invoices
+export default Contract
