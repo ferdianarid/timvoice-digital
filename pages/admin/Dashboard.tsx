@@ -25,13 +25,14 @@ import GroupIcon from "../../public/Statistics/groupIcon.svg"
 import clockIcon from "../../public/Statistics/clockIcon.svg"
 import DoughnutChart from '../../components/chart/Doughnut'
 import LineChart from '../../components/chart/LineChart'
+import CountUp from 'react-countup'
 
 // interface NumStatistics
 interface InterfaceStatistics {
 	imgStatistics: any,
 	altStatistics: string,
 	title: string,
-	count: string
+	count: number
 }
 
 // NumStatistics Component
@@ -42,7 +43,7 @@ const NumStatistics = ({ imgStatistics, altStatistics, title, count } : Interfac
 				<Image src={imgStatistics} alt={altStatistics} />
 				<p className="font-bold pl-2 text-[#202E63]">{ title }</p>
 			</div>
-			<h1 className="text-[64px] font-extrabold pt-3">{ count }</h1>
+			<h1 className="text-[64px] font-extrabold pt-3"><CountUp end={count} duration={4} /></h1>
 		</React.Fragment>
 	)
 }
@@ -90,16 +91,16 @@ const Dashboard: NextPage = () => {
 					<div className="w-[1240px] h-auto py-8 px-16 bg-blue-50">
 						<div className="w-full bg-white h-[200px] rounded-lg py-10 px-10 flex items-center justify-between">
 							<div className="w-[24%] border-r border-gray-400">
-								<NumStatistics imgStatistics={CurrencyIcon} altStatistics='revenue' title='Total Revenue' count='120K' />
+								<NumStatistics imgStatistics={CurrencyIcon} altStatistics='revenue' title='Total Revenue' count={1200} />
 							</div>
 							<div className="w-[24%] pl-6 border-r border-gray-400">
-								<NumStatistics imgStatistics={InvoiceIcon} altStatistics='invoice' title='Invoice' count='1289' />
+								<NumStatistics imgStatistics={InvoiceIcon} altStatistics='invoice' title='Invoice' count={1289} />
 							</div>
 							<div className="w-[24%] pl-6 border-r border-gray-400">
-							<NumStatistics imgStatistics={GroupIcon} altStatistics='group' title='Total Klien' count='672' />
+							<NumStatistics imgStatistics={GroupIcon} altStatistics='group' title='Total Klien' count={768} />
 							</div>
 							<div className="w-[24%] pl-6">
-							<NumStatistics imgStatistics={clockIcon} altStatistics='outstanding' title='Outstanding' count='$888' />
+							<NumStatistics imgStatistics={clockIcon} altStatistics='outstanding' title='Outstanding' count={888} />
 							</div>
 						</div>
 					</div>
