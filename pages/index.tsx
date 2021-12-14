@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import React from 'react'
+import FormActions from '../components/localStorage'
 
 // import Homepage Layouts
 import HomepageLayouts from '../layouts/HomeLayouts'
@@ -8,9 +9,7 @@ const Homepage: NextPage = () => {
 	return (
 		<React.Fragment>
 			<HomepageLayouts>
-				<div className="w-full bg-blue-300 h-24">
-					Heading
-				</div>
+				<FormActions />
 			</HomepageLayouts>
 		</React.Fragment>
 	)
