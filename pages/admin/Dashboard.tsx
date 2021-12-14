@@ -10,9 +10,11 @@ import Image from "next/image"
 import RecentActivity from '../../components/RecentActivity'
 import RecentInvoices from '../../components/RecentInvoices'
 import { Profile, ProfileCard } from "../../components/content/Profile"
+import Sidebar from "../../components/Sidebar"
+import Appbar from "../../components/Appbar"
 
 // import Dashboard Layouts
-import DashboardLayouts from '../../layouts/DashboardLayouts'
+// import DashboardLayouts from '../../layouts/DashboardLayouts'
 
 // Import Assets Images
 import ProfileIcon from "../../public/profile.svg"
@@ -21,6 +23,8 @@ import CurrencyIcon from "../../public/Statistics/clockIcon.svg"
 import InvoiceIcon from "../../public/Statistics/invoiceIcon.svg"
 import GroupIcon from "../../public/Statistics/groupIcon.svg"
 import clockIcon from "../../public/Statistics/clockIcon.svg"
+import DoughnutChart from '../../components/chart/Doughnut'
+import LineChart from '../../components/chart/LineChart'
 
 // interface NumStatistics
 interface InterfaceStatistics {
@@ -53,7 +57,10 @@ const Dashboard: NextPage = () => {
 				<meta httpEquiv="X-UA Compatible" content="IE-Edge" />
 				<meta name="author" content="timvoice corp" />
 			</Head>
-			<DashboardLayouts>
+			<div className="w-full max-w-[1440px] mx-auto flex">
+				<Sidebar />
+				<div className="flex w-full ml-[240px] h-24 flex-col">
+                     		<Appbar />
 					{/* <!-- Profiile Completeness --> */}
                      		<Profile />
 					{/* <!-- Summary and Revenue --> */}
@@ -61,9 +68,7 @@ const Dashboard: NextPage = () => {
 						{/* <!-- Summary Chart --> */}
 						<div className="w-[40%] h-auto py-8 px-10 bg-white rounded-lg">
 							<h1 className="font-bold text-heading-sm">Ringkasan</h1>
-							<div className="mt-4">
-								<ProfileCard imageIcon={ProfileIcon} imageAlt="Profile" title="Profile Completeness" subtitle="Complete your profile" />
-							</div>
+							<DoughnutChart />
 							{/* <!-- <InvoicesChart /> --> */}
 							{/* <LineChart :chartData="usersData" :options="chartOptions" class="line-chart" /> */}
 						</div>
@@ -71,12 +76,11 @@ const Dashboard: NextPage = () => {
 						<div className="w-[60%] h-auto py-8 px-10 bg-white rounded-lg ml-8">
 							<div className="flex justify-between items-center">
 								<h1 className="font-bold text-heading-sm">Pendapatan</h1>
+								
 								{/* <Dropdowns /> */}
 							</div>
-							<div className="w-full flex justify-between">
-								<div className="mt-4">
-									<ProfileCard imageIcon={ProfileIcon} imageAlt="Profile" title="Profile Completeness" subtitle="Complete your profile" />
-								</div>
+							<div className="w-full flex justify-between mt-8">
+							<LineChart />
 							{/* <!-- Line Chart Components --> */}
 							{/* <LineChart :chartData="chartData" :options="chartOptions" class="line-chart" /> */}
 							</div>
@@ -119,7 +123,8 @@ const Dashboard: NextPage = () => {
 							<RecentInvoices />
 						</div>
 					</div>
-                     </DashboardLayouts>
+                     	</div>
+			</div>
 		</React.Fragment>
 	)
 }
