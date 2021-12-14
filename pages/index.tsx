@@ -1,20 +1,24 @@
 import type { NextPage } from 'next'
 import React from 'react'
+
+// Import Head Link and Image from Next
 import Head from 'next/head'
 import Link from "next/link"
 import Image from "next/image"
 
+// Import Components
 import Sidebar from '../components/Sidebar'
 import Appbar from '../components/Appbar'
-
+import RecentActivity from '../components/RecentActivity'
+import RecentInvoices from '../components/RecentInvoices'
 import { Profile, ProfileCard } from "../components/content/Profile"
 
-import RecentActivity from '../components/RecentActivity'
-
+// Import Assets Images
 import ProfileIcon from "../public/profile.svg"
 import BusinessIcon from "../public/bussiness.svg"
 
-const Home: NextPage = () => {
+// Homepages
+const Homepage: NextPage = () => {
 	return (
 		<React.Fragment>
 			<Head>
@@ -108,107 +112,13 @@ const Home: NextPage = () => {
 							{/* <!-- Items Recent Activity --> */}
 							<div className="mt-6 rounded-lg h-auto">
 								<RecentActivity srcImage={BusinessIcon} altImage='bussiness' title="Tagihan baru" subtitle="membuat tagihan" spanText='Ferdian Ahmad' spanTextTwo='Logo Design Marketplace' timestamp='Kamis, 22 Januari 2023' />
-								<div className="py-4 flex hover:bg-blue-50 hover:rounded-lg hover:cursor-pointer">
-									<Image src={BusinessIcon} alt="profile" className="pt-0" />
-									<div className="pl-4">
-										<p className="text-md-regular font-bold pt-1">Pengingat</p>
-										<p className="text-md-regular text-gray-500 pt-1">
-											<span className="font-bold">Invoice TU-2369</span> reminder was sent to <span className="font-bold">Elizabeth Diningrat</span></p>
-										<p className="text-md-regular text-gray-500 pt-1 font-normal">Kemarin, 5:34 PM</p>
-									</div>
-								</div>
-								<div className="py-4 flex hover:bg-blue-50 hover:rounded-lg hover:cursor-pointer">
-									<Image src={ProfileIcon} alt="profile" className="pt-0" />
-									<div className="pl-4">
-										<p className="text-md-regular font-bold pt-1">Tagihan Baru</p>
-										<p className="text-md-regular text-gray-500 pt-1">
-											<span className="font-bold">Udin Alexander</span> membuat tagihan <span className="font-bold">PD-6679B</span></p>
-										<p className="text-md-regular text-gray-500 pt-1 font-normal">Baru saja</p>
-									</div>
-								</div>
+								<RecentActivity srcImage={ProfileIcon} altImage='profile' title="Pengingat" subtitle="akan dikirim oleh" spanText='Invoice TU-3652' spanTextTwo='John Smith' timestamp='Sabtu, 22 Januari 2023' />
+								<RecentActivity srcImage={BusinessIcon} altImage='bussiness' title="Tagihan baru" subtitle="membuat tagihan" spanText='Ferdian Ahmad' spanTextTwo='Logo Design Marketplace' timestamp='Kamis, 22 Januari 2023' />
 							</div>
 						</div>
-						{/* <!-- Invoice --> */}
+						{/* <!-- Recent Invoice --> */}
 						<div className="w-[55%] py-6 px-10 h-auto bg-white rounded-lg ml-8">
-							<div className="flex justify-between items-center">
-								<h1 className="font-bold text-heading-sm">Tagihan baru saja</h1>
-								<a href="/admin/dashboard/recent-invoices" className="text-[#405DC7] text-md-regular font-bold">See All</a>
-							</div>
-							{/* <!-- Items Recent Invoices --> */}
-							<div className="w-full mt-6 rounded-lg h-auto">
-								<table className="text-blue-800 rounded-t-lg rounded-b-lg w-full">
-								<tr className="text-left border-b-2 border-indigo-300">
-									<th className="px-4 py-3">ID</th>
-									<th className="px-4 py-3">Tanggal</th>
-									<th className="px-4 py-3">Klien</th>
-									<th className="px-4 py-3">Jumlah</th>
-									<th className="px-4 py-3">Status</th>
-								</tr>
-								<tr className="">
-									<td className="px-4 py-3">NG25</td>
-									<td className="px-4 py-3">28/09/2021</td>
-									<td className="px-4 py-3">Mike</td>
-									<td className="px-4 py-3">$597</td>
-									<td className="px-4 py-3">Dibayar</td>
-								</tr>
-								<tr className="">
-									<td className="px-4 py-3">NG25</td>
-									<td className="px-4 py-3">28/09/2021</td>
-									<td className="px-4 py-3">Karlson</td>
-									<td className="px-4 py-3">$637</td>
-									<td className="px-4 py-3">Tertunda</td>
-								</tr>
-								<tr className="">
-									<td className="px-4 py-3">NG25</td>
-									<td className="px-4 py-3">28/09/2021</td>
-									<td className="px-4 py-3">Rissa</td>
-									<td className="px-4 py-3">$224</td>
-									<td className="px-4 py-3">Dibayar</td>
-								</tr>
-								<tr className="">
-									<td className="px-4 py-3">NG25</td>
-									<td className="px-4 py-3">28/09/2021</td>
-									<td className="px-4 py-3">Mike</td>
-									<td className="px-4 py-3">$597</td>
-									<td className="px-4 py-3">Dibayar</td>
-								</tr>
-								<tr className="">
-									<td className="px-4 py-3">NG25</td>
-									<td className="px-4 py-3">28/09/2021</td>
-									<td className="px-4 py-3">Karlson</td>
-									<td className="px-4 py-3">$637</td>
-									<td className="px-4 py-3">Tertunda</td>
-								</tr>
-								<tr className="">
-									<td className="px-4 py-3">NG25</td>
-									<td className="px-4 py-3">28/09/2021</td>
-									<td className="px-4 py-3">Rissa</td>
-									<td className="px-4 py-3">$224</td>
-									<td className="px-4 py-3">Dibayar</td>
-								</tr>
-								<tr className="">
-									<td className="px-4 py-3">NG25</td>
-									<td className="px-4 py-3">28/09/2021</td>
-									<td className="px-4 py-3">Mike</td>
-									<td className="px-4 py-3">$597</td>
-									<td className="px-4 py-3">Dibayar</td>
-								</tr>
-								<tr className="">
-									<td className="px-4 py-3">NG25</td>
-									<td className="px-4 py-3">28/09/2021</td>
-									<td className="px-4 py-3">Karlson</td>
-									<td className="px-4 py-3">$637</td>
-									<td className="px-4 py-3">Tertunda</td>
-								</tr>
-								<tr className="">
-									<td className="px-4 py-3">NG25</td>
-									<td className="px-4 py-3">28/09/2021</td>
-									<td className="px-4 py-3">Rissa</td>
-									<td className="px-4 py-3">$224</td>
-									<td className="px-4 py-3">Dibayar</td>
-								</tr>
-								</table>
-							</div>
+							<RecentInvoices />
 						</div>
 					</div>
 				</div>
@@ -217,4 +127,4 @@ const Home: NextPage = () => {
 	)
 }
 
-export default Home
+export default Homepage
