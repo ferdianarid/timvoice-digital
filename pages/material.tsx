@@ -1,10 +1,11 @@
 import React from 'react'
-import Countup from '../design/Countup'
+import MyModal from '../design/Modals'
+import ModalInvoice from "../design/ModalInvoice"
 
 const Material = () => {
        return (
               <React.Fragment>
-                     <Countup />
+                     <ModalInvoice />
               </React.Fragment>
        )
 }

@@ -58,8 +58,10 @@ const Dashboard: NextPage = () => {
 				<meta httpEquiv="X-UA Compatible" content="IE-Edge" />
 				<meta name="author" content="timvoice corp" />
 			</Head>
+			{/* Sidebar */}
 			<div className="w-full max-w-[1440px] mx-auto flex">
 				<Sidebar />
+				{/* Application Bar */}
 				<div className="flex w-full ml-[240px] h-24 flex-col">
                      		<Appbar />
 					{/* <!-- Profiile Completeness --> */}
