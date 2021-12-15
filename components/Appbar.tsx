@@ -1,12 +1,16 @@
 import React, { ReactNode } from 'react'
 import Link from "next/link"
 import Image from "next/image"
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useState } from 'react'
 
 // Import Assets
 import IconBell from "../public/iconDashboard/IconBell.svg"
 import IconCreate from "../public/iconDashboard/create.svg"
 import AvatarImage from "../public/Avatar-Testimonial1.png"
-
+import invoiceIcon from "../public/tagihan.png"
+import proposalsIcon from "../public/proposals.png"
+import contractIcon from "../public/contract.png"
 
 // Interface Image Option
 interface ImageProps {
@@ -45,6 +49,118 @@ const LinkAction = ({ imgIcon, alt, children } : LinkActionProps) => {
        )
 }
 
+const ModalInvoice = () => {
+       const [isOpen, setIsOpen] = useState(true)
+
+       const closeModal = () => {
+         setIsOpen(false)
+       }
+     
+       const openModal = () => {
+       setIsOpen(true)
+       }
+       return (
+              <React.Fragment>
+              {/* Create Button */}
+              <div className="w-[123px] text-center font-bold ml-0 md:ml-1 no-underline flex items-center px-4 py-[10px] leading-none bg-blue-700 border-blue-700 border rounded text-white hover:border-transparent hover:bg-blue-800 mt-4 sm:mt-0" >
+              <div className='flex items-center'>
+                     <Image src={IconCreate} alt="create" />
+                     <button onClick={openModal}>
+                            Buat
+                     </button>
+              </div>
+              <Transition appear show={isOpen} as={Fragment}>
+                     <Dialog as="div" className="fixed inset-8 z-10" onClose={closeModal}>
+                            <div className="min-h-screen px-4 text-center">
+                                   <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
+                                          <Dialog.Overlay className="fixed inset-0 right-6" />
+                                   </Transition.Child>
+                                   {/* This element is to trick the browser into centering the modal contents. */}
+                                   <span className="inline-block h-screen align-top" aria-hidden="true">
+                                   &#8203;
+                                   </span>
+                                   {/* Modals */}
+                                   {/* Children Modals / Content */}
+                                   <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
+                                          <div className="inline-block w-full bg-white max-w-xs p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-lg rounded-lg">
+                                                 {/* <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-blue-800">
+                                                        Payment successful
+                                                 </Dialog.Title>
+                                                 <div className="mt-2">
+                                                        <p className="text-sm text-blue-800">
+                                                               Your payment has been successfully submitted. Weve sent you
+                                                               an email with all of the details of your order.
+                                                        </p>
+                                                 </div> */}
+                                                 {/* Card */}
+                                                 <div className="w-full flex justify-between items-center py-4  border-b border-blue-200">
+                                                        <Image src={invoiceIcon} alt="invoice" width={48} height={48} />
+                                                        <div className="desc">
+                                                                      <Dialog.Title as="h3" className="text-sm font-bold leading-none text-blue-800">
+                                                                             TAGIHAN
+                                                                      </Dialog.Title>
+                                                               <div className="mt-2">
+                                                                      <p className="text-sm text-gray-400">
+                                                                             Your payment has successfully
+                                                                      </p>
+                                                               </div>
+                                                        </div>
+                                                 </div>
+                                                 <div className="w-full flex justify-between items-center py-4  border-b border-blue-200">
+                                                        <Image src={contractIcon} alt="invoice" width={48} height={48} />
+                                                        <div className="desc">
+                                                                      <Dialog.Title as="h3" className="text-sm font-bold leading-none text-blue-800">
+                                                                             KONTRAK
+                                                                      </Dialog.Title>
+                                                               <div className="mt-2">
+                                                                      <p className="text-sm text-gray-400">
+                                                                             Your payment has successfully
+                                                                      </p>
+                                                               </div>
+                                                        </div>
+                                                 </div>
+                                                 <div className="w-full flex justify-between items-center py-4  border-b border-blue-200">
+                                                        <Image src={proposalsIcon} alt="invoice" width={48} height={48} />
+                                                        <div className="desc">
+                                                                      <Dialog.Title as="h3" className="text-sm font-bold leading-none text-blue-800">
+                                                                             PROPOSALS
+                                                                      </Dialog.Title>
+                                                               <div className="mt-2">
+                                                                      <p className="text-sm text-gray-400">
+                                                                             Your payment has successfully
+                                                                      </p>
+                                                               </div>
+                                                        </div>
+                                                 </div>
+                                                 <div className="w-full flex justify-between items-center py-4  border-b border-blue-200">
+                                                        <Image src={invoiceIcon} alt="invoice" width={48} height={48} />
+                                                        <div className="desc">
+                                                                      <Dialog.Title as="h3" className="text-sm font-bold leading-none text-blue-800">
+                                                                             CLIENTS
+                                                                      </Dialog.Title>
+                                                               <div className="mt-2">
+                                                                      <p className="text-sm text-gray-400">
+                                                                             Your payment has successfully
+                                                                      </p>
+                                                               </div>
+                                                        </div>
+                                                 </div>
+                                                 {/* button close */}
+                                                 <div className="mt-4">
+                                                        <button type="button" className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500" onClick={closeModal}>
+                                                               Got it, thanks!
+                                                        </button>
+                                                 </div>
+                                          </div>
+                                   </Transition.Child>
+                            </div>
+                     </Dialog>
+              </Transition>
+              </div>
+              </React.Fragment>
+       )
+}
+
 // Application Bar Components
 const Appbar = () => {
        return (
@@ -66,9 +182,8 @@ const Appbar = () => {
                             </div>
                             {/* Button Action */}
                             <div className="w-[40%] h-12 flex items-center justify-between">
-                                   {/* Create Button */}
-                                   <div className="w-[123px] text-center font-bold ml-0 md:ml-1 no-underline flex items-center px-4 py-[10px] leading-none bg-blue-700 border-blue-700 border rounded text-white hover:border-transparent hover:bg-blue-800 mt-4 sm:mt-0" >
-                                          <LinkAction imgIcon={IconCreate} alt="briefcase" children="Buat" />
+                                   <div>
+                                          <ModalInvoice />
                                    </div>
                                    {/* Language Translation */}
                                    <div className="w-auto text-center font-bold ml-0 md:ml-1 no-underline flex items-center px-4 py-[11px] leading-none bg-white border rounded text-blue-800 hover:border-transparent  mt-4 sm:mt-0" >
@@ -80,8 +195,8 @@ const Appbar = () => {
                                    <ImageOptions appBarIcon={IconBell} alt="bell-icon" />
                                    {/* Avatar Image */}
                                    <Image src={AvatarImage} />
+                                   </div>
                             </div>
-                     </div>
               </React.Fragment>
        )
 }
