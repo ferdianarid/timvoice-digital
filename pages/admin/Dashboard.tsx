@@ -99,10 +99,10 @@ const Dashboard: NextPage = () => {
 								<NumStatistics imgStatistics={InvoiceIcon} altStatistics='invoice' title='Invoice' count={1289} />
 							</div>
 							<div className="w-[24%] pl-6 border-r border-gray-400">
-							<NumStatistics imgStatistics={GroupIcon} altStatistics='group' title='Total Klien' count={768} />
+								<NumStatistics imgStatistics={GroupIcon} altStatistics='group' title='Total Klien' count={768} />
 							</div>
 							<div className="w-[24%] pl-6">
-							<NumStatistics imgStatistics={clockIcon} altStatistics='outstanding' title='Outstanding' count={888} />
+								<NumStatistics imgStatistics={clockIcon} altStatistics='outstanding' title='Outstanding' count={888} />
 							</div>
 						</div>
 					</div>
