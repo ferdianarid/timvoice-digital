@@ -49,8 +49,9 @@ const LinkAction = ({ imgIcon, alt, children } : LinkActionProps) => {
        )
 }
 
+// modal create invoice component
 const ModalInvoice = () => {
-       const [isOpen, setIsOpen] = useState(true)
+       const [isOpen, setIsOpen] = useState(false)
 
        const closeModal = () => {
          setIsOpen(false)
@@ -68,7 +69,7 @@ const ModalInvoice = () => {
                      <button onClick={openModal}>
                             Buat
                      </button>
-              </div>
+              </div> 
               <Transition appear show={isOpen} as={Fragment}>
                      <Dialog as="div" className="fixed inset-8 z-10" onClose={closeModal}>
                             <div className="min-h-screen px-4 text-center">
@@ -83,15 +84,6 @@ const ModalInvoice = () => {
                                    {/* Children Modals / Content */}
                                    <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
                                           <div className="inline-block w-full bg-white max-w-xs p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-lg rounded-lg">
-                                                 {/* <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-blue-800">
-                                                        Payment successful
-                                                 </Dialog.Title>
-                                                 <div className="mt-2">
-                                                        <p className="text-sm text-blue-800">
-                                                               Your payment has been successfully submitted. Weve sent you
-                                                               an email with all of the details of your order.
-                                                        </p>
-                                                 </div> */}
                                                  {/* Card */}
                                                  <div className="w-full flex justify-between items-center py-4  border-b border-blue-200">
                                                         <Image src={invoiceIcon} alt="invoice" width={48} height={48} />

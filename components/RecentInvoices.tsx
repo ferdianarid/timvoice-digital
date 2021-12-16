@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
+
+// Import State Status
+import { PaidStatus, UnpaidStatus, DraftStatus, PartStatus, OverdueStatus } from "../components/partials/StateStatus"
 
 // Interface Data Tables
 interface InterfaceDataTables {
@@ -6,7 +9,7 @@ interface InterfaceDataTables {
 	tanggal: string,
 	klien: string,
 	jumlah: number,
-	status: string
+	status: ReactNode
 }
 
 // Data Tables Components
@@ -14,11 +17,11 @@ const DataTables = ( props: InterfaceDataTables ) => {
 	const { id, tanggal, klien, jumlah, status } = props
 	return (
 		<tr className="text-left">
-			<th className="font-normal px-4 py-3">{ id }</th>
-			<th className="font-normal px-4 py-3">{ tanggal }</th>
-			<th className="font-normal px-4 py-3">{ klien }</th>
-			<th className="font-normal px-4 py-3">{ jumlah }</th>
-			<th className="font-normal px-4 py-3">{ status }</th>
+			<th className="font-normal text-[16px] px-2 py-3">{ id }</th>
+			<th className="font-normal text-[16px] px-2 py-3">{ tanggal }</th>
+			<th className="font-normal text-[16px] px-2 py-3">{ klien }</th>
+			<th className="font-normal text-[16px] px-2 py-3">{ jumlah }</th>
+			<th className="font-normal text-[16px] px-2 py-3">{ status }</th>
 		</tr>
 	)
 }
@@ -37,21 +40,21 @@ const RecentInvoices = () => {
                             <table className="text-blue-800 rounded-t-lg rounded-b-lg w-full">
                             {/* Table Head */}
                             <tr className="text-left border-b-2 border-indigo-300">
-                                   <th className="px-4 py-3">ID</th>
-                                   <th className="px-4 py-3">Tanggal</th>
-                                   <th className="px-4 py-3">Klien</th>
-                                   <th className="px-4 py-3">Jumlah</th>
-                                   <th className="px-4 py-3">Status</th>
+                                   <th className="text-[16px] px-2 py-3">ID</th>
+                                   <th className="text-[16px] px-2 py-3">Tanggal</th>
+                                   <th className="text-[16px] px-2 py-3">Klien</th>
+                                   <th className="text-[16px] px-2 py-3">Jumlah</th>
+                                   <th className="text-[16px] px-2 py-3">Status</th>
                             </tr>
                             {/* Render List Data Tables Components */}
-                            <DataTables id={223} tanggal="25/12/2021" klien="Smith" jumlah={4456} status="Dibayar" />
-                            <DataTables id={446} tanggal="08/11/2021" klien="Ferdian" jumlah={2214} status="Dibayar" />
-                            <DataTables id={523} tanggal="23/10/2021" klien="Ahmad" jumlah={887} status="Tertunda" />
-                            <DataTables id={723} tanggal="28/09/2021" klien="Rozikin" jumlah={3972} status="Dibayar" />
-                            <DataTables id={283} tanggal="18/09/2021" klien="Fadhila" jumlah={1477} status="Tertunda" />
-                            <DataTables id={223} tanggal="25/12/2021" klien="Smith" jumlah={4456} status="Dibayar" />
-                            <DataTables id={446} tanggal="08/11/2021" klien="Ferdian" jumlah={2214} status="Dibayar" />
-                            <DataTables id={523} tanggal="23/10/2021" klien="Ahmad" jumlah={887} status="Tertunda" />
+                            <DataTables id={223} tanggal="25/12/2021" klien="Smith" jumlah={4456} status={<PaidStatus/>} />
+                            <DataTables id={446} tanggal="08/11/2021" klien="Ferdian" jumlah={2214} status={<DraftStatus/>} />
+                            <DataTables id={523} tanggal="23/10/2021" klien="Ahmad" jumlah={887} status={<OverdueStatus/>} />
+                            <DataTables id={723} tanggal="28/09/2021" klien="Rozikin" jumlah={3972} status={<PaidStatus/>} />
+                            <DataTables id={283} tanggal="18/09/2021" klien="Fadhila" jumlah={1477} status={<DraftStatus/>} />
+                            <DataTables id={223} tanggal="25/12/2021" klien="Smith" jumlah={4456} status={<PartStatus/>} />
+                            <DataTables id={446} tanggal="08/11/2021" klien="Ferdian" jumlah={2214} status={<UnpaidStatus/>} />
+                            <DataTables id={523} tanggal="23/10/2021" klien="Ahmad" jumlah={887} status={<DraftStatus/>} />
                             </table>
                      </div>
               </React.Fragment>
