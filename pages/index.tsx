@@ -9,7 +9,7 @@ const Homepage: NextPage = () => {
 	return (
 		<React.Fragment>
 			<HomepageLayouts>
-				<FormActions />
+				{/* <FormActions /> */}
 			</HomepageLayouts>
 		</React.Fragment>
 	)
