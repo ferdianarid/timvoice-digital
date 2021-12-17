@@ -1,8 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
-import DashboardLayouts from '../../../layouts/DashboardLayouts'
 import { NextPage } from 'next'
 import Link from 'next/link'
+
+// import dashboard layouts
+import DashboardLayouts from '../../../layouts/DashboardLayouts'
 
 // pages create invoices
 const createInvoices: NextPage = () => {
@@ -24,11 +26,11 @@ const createInvoices: NextPage = () => {
                             </p>
                             <div className="w-full bg-white my-8 h-auto rounded-lg px-10">
                             <div className="flex justify-between items-center">
-                            <h1 className="py-6 text-[28px] font-bold">Informasi Dasar</h1>
-                            <div className="h-auto w-auto flex rounded-md">
-                                   <p className="text-[black] font-bold py-2 px-4 text-lg-bold">Nomor Tagihan</p>
-                                   <input className="w-[114px] border-[1px] border-[#C2C2C2] rounded py-[8px] px-[16px]" type="text" id="fname" name="fname" defaultValue={2224} />
-                            </div>
+                                   <h1 className="py-6 text-[28px] font-bold">Informasi Dasar</h1>
+                                   <div className="h-auto w-auto flex rounded-md">
+                                          <p className="text-[black] font-bold py-2 px-4 text-lg-bold">Nomor Tagihan</p>
+                                          <input className="w-[114px] border-[1px] border-[#C2C2C2] rounded py-[8px] px-[16px]" type="text" id="fname" name="fname" defaultValue={2224} />
+                                   </div>
                             <div className="flex">
                                    <div className="flex items-center pr-[12px]">
                                           <p className="text-lg-bold font-bold">Mata Uang</p>
@@ -60,8 +62,6 @@ const createInvoices: NextPage = () => {
                             </div>
                             </div>
                      </div>
-
-          
               </DashboardLayouts>
               </React.Fragment>
        )
