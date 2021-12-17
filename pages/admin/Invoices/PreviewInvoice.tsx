@@ -119,53 +119,65 @@ const PreviewInvoice : NextPage = () => {
                                                  <hr className='text-blue-800 font-bold mt-16 mb-6' />
                                                  {/* heading description */}
                                                  <div className="flex justify-between items-center">
-                                                        <p className="font-bold text-[16px]">Keterangan Pekerjaan</p>
-                                                        <p className="font-bold text-[16px]">Qty</p>
-                                                        <p className="font-bold text-[16px]">Tarif</p>
-                                                        <p className="font-bold text-[16px]">Jumlah</p>
+                                                        <div className="w-1/4">
+                                                               <p className="font-bold text-[16px]">Keterangan Pekerjaan</p>
+                                                        </div>
+                                                        <div className="w-1/4 flex justify-center">
+                                                               <p className="font-bold text-[16px]">Qty</p>
+                                                        </div>
+                                                        <div className="w-1/4  flex justify-center">
+                                                               <p className="font-bold text-[16px]">Tarif</p>
+                                                        </div>
+                                                        <div className="w-1/4  flex justify-end">
+                                                               <p className="font-bold text-[16px]">Jumlah</p>
+                                                        </div>
                                                  </div>
                                                  <hr className='text-[#E0E0E0] my-6' />
-                                                 {/* Content Package */}
-                                                 <div className="flex justify-between items-center">
-                                                        <div className="">
-                                                               <p className="font-bold leading-6 text-[16px] pb-2">Logo Desain Full Package</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- Customize Web Design</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- 12 Pages for  3 module :</p>
-                                                               <p className="font-normal leading-6 text-[16px] pl-3">a. Patient</p>
-                                                               <p className="font-normal leading-6 text-[16px] pl-3">b. Appointment</p>
-                                                               <p className="font-normal leading-6 text-[16px] pl-3">c. Registration</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- Custom motion designing</p>
-                                                        </div>
-                                                        <p>22</p>
-                                                        <p>IDR 2.875.000</p>
-                                                        <p>IDR 2.875.000</p>
-                                                 </div>
+                                                 
                                                  {/* Content Package */}
                                                  <div className="flex justify-between items-center mt-6">
-                                                        <div className="">
-                                                               <p className="font-bold leading-6 text-[16px] pb-2">Web Design Basic Package</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- Customize Web Design</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- Responsive Design</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- Include Project Management</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- Include UI/UX Design</p>
+                                                        <div className="w-1/4">
+                                                               <div className="">
+                                                                      <p className="font-bold leading-6 text-[16px] pb-2">Web Design Basic Package</p>
+                                                                      <p className="font-normal leading-6 text-[16px]">- Customize Web Design</p>
+                                                                      <p className="font-normal leading-6 text-[16px]">- Responsive Design</p>
+                                                                      <p className="font-normal leading-6 text-[16px]">- Include Project Management</p>
+                                                                      <p className="font-normal leading-6 text-[16px]">- Include UI/UX Design</p>
+                                                               </div>
                                                         </div>
-                                                        <p>45</p>
-                                                        <p>IDR 5.875.000</p>
-                                                        <p>IDR 5.875.000</p>
+                                                        <div className="w-1/4 flex justify-center">
+                                                               <p>45</p>
+                                                        </div>
+                                                        <div className="w-1/4 flex justify-end">
+                                                               <p>IDR 5.875.000</p>
+                                                        </div>
+                                                        <div className="w-1/4 flex justify-end">
+                                                               <p>IDR 5.875.000</p>
+                                                        </div>
                                                  </div>
+
                                                  {/* Content Package */}
                                                  <div className="flex justify-between items-center mt-6">
-                                                        <div className="">
-                                                               <p className="font-bold leading-6 text-[16px] pb-2">Kubernetes Expert Package</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- Configuration CI CD</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- Dockerization Image</p>
-                                                               <p className="font-normal leading-6 text-[16px]">- Include Project Management</p>
-                                                               <p className="font-normal leading-6 text-[16px]">Integrations Testing</p>
+                                                        <div className="w-1/4">
+                                                               <div className="">
+                                                                      <p className="font-bold leading-6 text-[16px] pb-2">Kubernetes Expert Package</p>
+                                                                      <p className="font-normal leading-6 text-[16px]">- Dockerization Image</p>
+                                                                      <p className="font-normal leading-6 text-[16px]">- Configuration CI CD</p>
+                                                                      <p className="font-normal leading-6 text-[16px]">- Include Project Management</p>
+                                                                      <p className="font-normal leading-6 text-[16px]">- Automated Testing</p>
+                                                               </div>
                                                         </div>
-                                                        <p className='text-[16px]'>45</p>
-                                                        <p className='text-[16px]'>IDR 5.875.000</p>
-                                                        <p className='text-[16px]'>IDR 5.875.000</p>
+                                                        <div className="w-1/4 flex justify-center">
+                                                               <p>45</p>
+                                                        </div>
+                                                        <div className="w-1/4 flex justify-end">
+                                                               <p>IDR 5.875.000</p>
+                                                        </div>
+                                                        <div className="w-1/4 flex justify-end">
+                                                               <p>IDR 5.875.000</p>
+                                                        </div>
                                                  </div>
+                                                 
                                                  <hr className='text-blue-800 font-bold mt-16 mb-6' />
                                                  {/* heading description */}
                                                  <div className="flex justify-between items-center">

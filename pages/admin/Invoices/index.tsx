@@ -8,6 +8,7 @@ import DashboardLayouts from '../../../layouts/DashboardLayouts'
 // import Profile Components
 import { Profile } from '../../../components/content/Profile' 
 import Tables from '../../../components/Tables'
+import Link from 'next/link'
 
 // Invoices Page
 const Invoices: NextPage = () => {
@@ -30,7 +31,7 @@ const Invoices: NextPage = () => {
                                                  <h1 className="py-6 text-[28px] font-bold">Daftar Tagihan</h1>
                                                  <div className="h-auto w-auto bg-[#F7F8FD] rounded-md">
                                                         <p className="text-[#405DC7] font-bold py-2 px-4 text-lg-bold">
-                                                               <a href="/admin/invoices/createinvoices">Buat Tagihan Baru</a>
+                                                               <Link href="/admin/invoices/createinvoices">Buat Tagihan Baru</Link>
                                                         </p>
                                                  </div>
                                           </div>
