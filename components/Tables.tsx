@@ -3,33 +3,31 @@ import { DraftStatus, UnpaidStatus, PaidStatus, OverdueStatus, PartStatus } from
 import Ellipsis from './partials/Ellipsis'
 
 // interface Data Invoices
-interface InterfaceInvoices {
-       id: number,
-       created: string,
-       client: string,
-       project: string,
-       country: string,
-       amount: number,
-       paids: string,
-       status: ReactNode
-}
+import { InterfaceInvoices } from '../interfaces/Invoices'
+
+import DownloadOption from './DownloadOption'
 
 // Data Invoices
-const DataInvoices = ( props: InterfaceInvoices ) => {
-       const  { id, created, client, project, country, amount, status, paids } = props
+const DataInvoices = (props: InterfaceInvoices) => {
+       const { id, created, client, project, country, amount, status, paids } = props
+
+       const [isChecked, setChecked] = React.useState(false)
+
+       const checkHandler = () => {
+              setChecked(!isChecked)
+       }
+
        return (
               <tr className="">
-                     <th>
-                            <input type="checkbox" className="form-checkbox h-5 w-5 text-dark" name="" id="" />
-                     </th>
-                     <td className="text-[16px] px-2 py-3">{ id }</td>
-                     <td className="text-[16px] px-2 py-3">{ created }</td>
-                     <td className="text-[16px] px-2 py-3">{ client }</td>
-                     <td className="text-[16px] px-2 py-3">{ project }</td>
-                     <td className="text-[16px] px-2 py-3">{ country }</td>
-                     <td className="text-[16px] px-2 py-3">{ amount }</td>
-                     <td className="text-[16px] px-2 py-3">{ status }</td>
-                     <td className="text-[16px] px-2 py-3">{ paids }</td>
+                     <td><input type="checkbox" checked={isChecked} onChange={checkHandler} className="form-checkbox h-5 w-5 text-dark" name="" id="" /></td>
+                     <td className="text-[16px] px-2 py-3">{id}</td>
+                     <td className="text-[16px] px-2 py-3">{created}</td>
+                     <td className="text-[16px] px-2 py-3">{client}</td>
+                     <td className="text-[16px] px-2 py-3">{project}</td>
+                     <td className="text-[16px] px-2 py-3">{country}</td>
+                     <td className="text-[16px] px-2 py-3">{amount}</td>
+                     <td className="text-[16px] px-2 py-3">{status}</td>
+                     <td className="text-[16px] px-2 py-3">{paids}</td>
                      <td className="text-[16px] px-2 py-3"><Ellipsis /></td>
               </tr>
        )
