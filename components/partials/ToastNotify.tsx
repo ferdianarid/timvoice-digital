@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+
+interface dataToastInterface {
+       children: ReactNode
+}
 
 // toaster message
 export const infoNotify = () => toast('This is Info Notification Toaster', {
@@ -8,8 +12,11 @@ export const infoNotify = () => toast('This is Info Notification Toaster', {
               color: 'white'
        }
 });
-export const successNotify = () => toast.success('This is Success Notification Toaster');
-export const warningNotify = () => toast('This is Warning Notification Toaster', {
+const Text = ({ children }: dataToastInterface) => {
+       return <h1>{children}</h1>
+}
+export const successNotify = () => toast.success(<Text>Successfully</Text>);
+export const warningNotify = () => toast("Loading ...", {
        style: {
               background: 'yellow',
               color: 'black'
@@ -23,8 +30,8 @@ const ToastNotify = () => {
               <React.Fragment>
                      {/* Toaster */}
                      <div className="flex">
-                     <div className='flex mr-2'>
-                            <button onClick={infoNotify} className='py-2 bg-[#405DC7] hover:bg-[#324daf] text-white px-4 rounded-md flex items-center font-bold'>Info Toaster</button>
+                            <div className='flex mr-2'>
+                                   <button onClick={infoNotify} className='py-2 bg-[#405DC7] hover:bg-[#324daf] text-white px-4 rounded-md flex items-center font-bold'>Info Toaster</button>
                             </div>
 
                             <div className='flex justify-between mr-2'>
@@ -39,9 +46,9 @@ const ToastNotify = () => {
                                    <button onClick={successNotify} className='py-2 bg-[#2cad20] hover:bg-[#1d9112] text-white px-4 rounded-md flex items-center font-bold'>Success Toaster</button>
                             </div>
 
-                            <Toaster  toastOptions={{ 
-                                   success: { 
-                                          style: { 
+                            <Toaster toastOptions={{
+                                   success: {
+                                          style: {
                                                  background: 'green',
                                                  color: 'white'
                                           },
