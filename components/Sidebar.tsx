@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import Link from "next/link"
 import Image from "next/image"
 
@@ -9,16 +9,12 @@ import IconClient from "../public/iconDashboard/users.svg"
 import IconProject from "../public/iconDashboard/folder.svg"
 import IconProposals from "../public/iconDashboard/news.svg"
 import IconContract from "../public/iconDashboard/documents.svg"
-import  IconInvoice from "../public/iconDashboard/reports.svg"
+import IconInvoice from "../public/iconDashboard/reports.svg"
 import IconSupport from "../public/iconDashboard/questions.svg"
 import IconSettings from "../public/iconDashboard/settings.svg"
 
 // Interface Menu List Component
-interface InterfaceMenu {
-       href: string,
-       iconMenu: string,
-       children: ReactNode
-}
+import { InterfaceMenu } from '../interfaces/Sidebar'
 
 // Sidebar Components
 const Sidebar = () => {
@@ -55,13 +51,13 @@ const Sidebar = () => {
 }
 
 // Menu List Components
-const MenuList = ({ href, iconMenu, children } : InterfaceMenu) => {
+const MenuList = ({ href, iconMenu, children }: InterfaceMenu) => {
        return (
               <div className="mt-1 bg-none hover:bg-[#32489A] hover:font-bold transition-all hover:cursor-pointer py-[10px] px-3 rounded-md flex items-center">
                      <Link href={href}>
                             <div className="flex items-center">
                                    <Image src={iconMenu} width={20} />
-                                   <h1 className="font-bold pl-[6px] text-white text-[15px]">{ children }</h1>
+                                   <h1 className="font-bold pl-[6px] text-white text-[15px]">{children}</h1>
                             </div>
                      </Link>
               </div>
