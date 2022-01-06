@@ -9,6 +9,7 @@ import DashboardLayouts from '../../../layouts/DashboardLayouts'
 import { Profile } from '../../../components/content/Profile'
 import Tables from '../../../components/Tables'
 import Link from 'next/link'
+import DownloadOption from '../../../components/DownloadOption'
 
 // Invoices Page
 const Invoices: NextPage = () => {
@@ -50,6 +51,8 @@ const Invoices: NextPage = () => {
                                                                       <input type="search" name="query" className="w-full border border-gray-200 py-2 px-4 text-sm text-white bg-white rounded-[4px] pl-10 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Cari" autoComplete="on" />
                                                                </div>
                                                         </form>
+                                                        {/* Download Options */}
+                                                        <DownloadOption />
                                                  </div>
                                                  <div className="w-auto flex justify-between">
                                                         {/* <!-- Export Button --> */}
