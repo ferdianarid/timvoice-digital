@@ -1,18 +1,34 @@
 import React from 'react'
 import { NextPage } from 'next'
+
+// import Head from next
 import Head from "next/head"
+
+// import Link from next
+import Link from 'next/link'
 
 // import Dashboard Layouts
 import DashboardLayouts from '../../../layouts/DashboardLayouts'
 
 // import Profile Components
 import { Profile } from '../../../components/content/Profile'
+
+// import Tables Components
 import Tables from '../../../components/Tables'
-import Link from 'next/link'
+
+// import Download Components
 import DownloadOption from '../../../components/DownloadOption'
 
 // Invoices Page
 const Invoices: NextPage = () => {
+       // initial state | component rendered
+       const [showDownloadComponent, setShowDownloadComponent] = React.useState(true)
+
+       // show download action
+       const ShowDownload = () => {
+              setShowDownloadComponent(true)
+       }
+
        return (
               <React.Fragment>
                      <Head>
@@ -52,7 +68,9 @@ const Invoices: NextPage = () => {
                                                                </div>
                                                         </form>
                                                         {/* Download Options */}
-                                                        <DownloadOption />
+                                                        {
+                                                               showDownloadComponent && <DownloadOption />
+                                                        }
                                                  </div>
                                                  <div className="w-auto flex justify-between">
                                                         {/* <!-- Export Button --> */}
