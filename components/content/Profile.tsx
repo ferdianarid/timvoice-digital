@@ -15,9 +15,9 @@ interface InterfaceProfile {
 }
 
 // Profile Card Component
-const ProfileCard = ( props : InterfaceProfile ) => {
+const ProfileCard = (props: InterfaceProfile) => {
        // Desctructuring Props
-       const {imageIcon, imageAlt, title, subtitle } = props
+       const { imageIcon, imageAlt, title, subtitle } = props
        return (
               <div className="profile-details hover:cursor-pointer flex items-center py-3 px-4 bg-[#92aaff] bg-opacity-10 hover:bg-opacity-20 w-[325px] rounded-lg">
                      <Image src={imageIcon} alt={imageAlt} />
@@ -36,25 +36,25 @@ const ProfileCard = ( props : InterfaceProfile ) => {
 const Profile = () => {
        return (
               <React.Fragment>
-              {/* <!-- Profile Completeness --> */}
-              <div className="w-[1240px] h-auto py-8 px-16 bg-blue-50">
-                     <div className="popUp bg-[#ffffff] shadow-shadow-3 w-full rounded-lg p-6">
-                            <div className="flex items-center justify-between">
-                                   {/* Heading */}
-                                   <h1 className="text-[20px] mb-6 font-bold">Lengkapi Profil Anda</h1>
-                                   {/* <!-- close button --> */}
-                                   <a className="mb-6">
-                                          <Image src={CloseIcon} alt="closeButton" />
-                                   </a>
-                             </div>
-                             {/* Profile Cards */}
-                             <div className="flex justify-between gap-x-2">
-                                   <ProfileCard imageIcon={ProfileIcon} imageAlt="Profile" title="Detil Profil" subtitle="Tambah No. Telepon" />
-                                   <ProfileCard imageIcon={BussinessIcon} imageAlt="Business" title="Detil Bisnis" subtitle="Tambah Alamat Bisnis" />
-                                   <ProfileCard imageIcon={BussinessIcon} imageAlt="Invoices" title="Kustomisasi Tagihan" subtitle="Unggah logo anda" />
+                     {/* <!-- Profile Completeness --> */}
+                     <div className="w-[1240px] h-auto py-8 px-16 bg-blue-50">
+                            <div className="popUp bg-[#ffffff] shadow-shadow-3 w-full rounded-lg p-6">
+                                   <div className="flex items-center justify-between">
+                                          {/* Heading */}
+                                          <h1 className="text-[20px] mb-6 font-bold">Lengkapi Profil Anda</h1>
+                                          {/* <!-- close button --> */}
+                                          <a className="mb-6">
+                                                 <Image src={CloseIcon} alt="closeButton" />
+                                          </a>
+                                   </div>
+                                   {/* Profile Cards */}
+                                   <div className="flex justify-between gap-x-2">
+                                          <ProfileCard imageIcon={ProfileIcon} imageAlt="Profile" title="Detil Profil" subtitle="Tambah No. Telepon" />
+                                          <ProfileCard imageIcon={BussinessIcon} imageAlt="Business" title="Detil Bisnis" subtitle="Tambah Alamat Bisnis" />
+                                          <ProfileCard imageIcon={BussinessIcon} imageAlt="Invoices" title="Kustomisasi Tagihan" subtitle="Unggah logo anda" />
+                                   </div>
                             </div>
                      </div>
-              </div>
               </React.Fragment>
        )
 }
