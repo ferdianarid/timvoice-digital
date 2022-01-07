@@ -36,12 +36,12 @@ interface InterfaceStatistics {
 }
 
 // NumStatistics Component
-const NumStatistics = ({ imgStatistics, altStatistics, title, count } : InterfaceStatistics) => {
+const NumStatistics = ({ imgStatistics, altStatistics, title, count }: InterfaceStatistics) => {
 	return (
 		<React.Fragment>
 			<div className="flex items-center">
 				<Image src={imgStatistics} alt={altStatistics} />
-				<p className="font-bold pl-2 text-[#202E63]">{ title }</p>
+				<p className="font-bold pl-2 text-[#202E63]">{title}</p>
 			</div>
 			<h1 className="text-[64px] font-extrabold pt-3"><CountUp end={count} duration={4} /></h1>
 		</React.Fragment>
@@ -50,6 +50,7 @@ const NumStatistics = ({ imgStatistics, altStatistics, title, count } : Interfac
 
 // Homepages
 const Dashboard: NextPage = () => {
+	const [showProfiles, setshowProfiles] = React.useState()
 	return (
 		<React.Fragment>
 			<Head>
@@ -63,9 +64,9 @@ const Dashboard: NextPage = () => {
 				<Sidebar />
 				{/* Application Bar */}
 				<div className="flex w-full ml-[240px] h-24 flex-col">
-                     		<Appbar />
+					<Appbar />
 					{/* <!-- Profiile Completeness --> */}
-                     		<Profile />
+					<Profile />
 					{/* <!-- Summary and Revenue --> */}
 					<div className="w-[1240px] h-auto px-16 bg-blue-50 flex justify-between">
 						{/* <!-- Summary Chart --> */}
@@ -79,13 +80,13 @@ const Dashboard: NextPage = () => {
 						<div className="w-[60%] h-auto py-8 px-10 bg-white rounded-lg ml-8">
 							<div className="flex justify-between items-center">
 								<h1 className="font-bold text-[28px]">Pendapatan</h1>
-								
+
 								{/* <Dropdowns /> */}
 							</div>
 							<div className="w-full flex justify-between mt-8">
-							<LineChart />
-							{/* <!-- Line Chart Components --> */}
-							{/* <LineChart :chartData="chartData" :options="chartOptions" class="line-chart" /> */}
+								<LineChart />
+								{/* <!-- Line Chart Components --> */}
+								{/* <LineChart :chartData="chartData" :options="chartOptions" class="line-chart" /> */}
 							</div>
 						</div>
 					</div>
@@ -126,7 +127,7 @@ const Dashboard: NextPage = () => {
 							<RecentInvoices />
 						</div>
 					</div>
-                     	</div>
+				</div>
 			</div>
 		</React.Fragment>
 	)

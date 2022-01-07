@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NextPage } from 'next'
 
 // import Head from next
@@ -19,10 +19,16 @@ import Tables from '../../../components/Tables'
 // import Download Components
 import DownloadOption from '../../../components/DownloadOption'
 
+// import delete option
+import DeleteOption from '../../../components/DeleteOption'
+
 // Invoices Page
 const Invoices: NextPage = () => {
        // initial state | component rendered
        const [showDownloadComponent, setShowDownloadComponent] = React.useState(true)
+
+       // delete option showing
+       const [deleteOptions, setDeleteOptions] = React.useState(false)
 
        // show download action
        const ShowDownload = () => {
@@ -67,9 +73,12 @@ const Invoices: NextPage = () => {
                                                                       <input type="search" name="query" className="w-full border border-gray-200 py-2 px-4 text-sm text-white bg-white rounded-[4px] pl-10 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Cari" autoComplete="on" />
                                                                </div>
                                                         </form>
-                                                        {/* Download Options */}
+                                                        {/* Download Options  && delete option*/}
                                                         {
-                                                               showDownloadComponent && <DownloadOption />
+                                                               [
+                                                                      showDownloadComponent && <DownloadOption />,
+                                                                      deleteOptions && <DeleteOption />
+                                                               ]
                                                         }
                                                  </div>
                                                  <div className="w-auto flex justify-between">
