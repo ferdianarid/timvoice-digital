@@ -33,9 +33,10 @@ const DataInvoices = (props: InterfaceInvoices) => {
        )
 }
 
-const Tables = () => {
+const Tables = (props: any) => {
        return (
               <React.Fragment>
+                     {props.data}
                      <table className="text-blue-800 m-5 w-full mx-auto">
                             <tr className="text-left border-b-2 border-indigo-300">
                                    <th><input type="checkbox" className="form-checkbox h-5 w-5 text-dark" name="" id="" defaultChecked /></th>
@@ -63,3 +64,4 @@ const Tables = () => {
 }
 
 export default Tables
+
