@@ -8,9 +8,9 @@ import BussinessIcon from "../../public/bussiness.svg"
 
 // Interface Profile Card Component
 interface InterfaceProfile {
-       imageIcon: string,
-       imageAlt: string,
-       title: string,
+       imageIcon: string
+       imageAlt: string
+       title: string
        subtitle: string
 }
 
@@ -33,17 +33,18 @@ const ProfileCard = (props: InterfaceProfile) => {
 }
 
 // Profile Component
-const Profile = () => {
-       return (
-              <React.Fragment>
-                     {/* <!-- Profile Completeness --> */}
-                     <div className="w-[1240px] h-auto py-8 px-16 bg-blue-50">
+const Profile: React.FunctionComponent = () => {
+       const [ShowProfiles, setShowProfiles] = React.useState(true)
+
+       const RenderProfiles = () => {
+              return (
+                     <div className="w-[1240px] h-auto pt-8 px-16 bg-blue-50">
                             <div className="popUp bg-[#ffffff] shadow-shadow-3 w-full rounded-lg p-6">
                                    <div className="flex items-center justify-between">
                                           {/* Heading */}
                                           <h1 className="text-[20px] mb-6 font-bold">Lengkapi Profil Anda</h1>
                                           {/* <!-- close button --> */}
-                                          <a className="mb-6">
+                                          <a onClick={() => setShowProfiles(false)} className="mb-6">
                                                  <Image src={CloseIcon} alt="closeButton" />
                                           </a>
                                    </div>
@@ -55,7 +56,15 @@ const Profile = () => {
                                    </div>
                             </div>
                      </div>
-              </React.Fragment>
+              )
+       }
+       return (
+              <React.Fragment>
+                     {/* <!-- Profile Completeness --> */}
+                     {
+                            ShowProfiles && <RenderProfiles />
+                     }
+              </React.Fragment >
        )
 }
 

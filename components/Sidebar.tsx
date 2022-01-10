@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from "next/link"
 import Image from "next/image"
 
@@ -22,22 +22,14 @@ const Sidebar = () => {
               <React.Fragment>
                      {/* Sidebar */}
                      <div className="sidebar fixed z-10 w-[240px] bg-[#202E63] pb-[67rem] px-8">
-                            <div className="py-8 border-b border-opacity-80 border-white">
+                            <div className="py-8 border-b border-opacity-80 border-white mb-7">
                                    {/* Tiimvoice Logo */}
                                    <Link href="/">
                                           <Image src={TimvoiceLogo} />
                                    </Link>
                             </div>
-                            {/* Dashboard Active Menu */}
-                            <div className="mt-7 bg-[#32489A] py-[10px] px-3 rounded-md flex items-center transition-all hover:cursor-pointer">
-                                   <Link href="/admin/dashboard">
-                                          <div className="flex items-center">
-                                                 <Image src={IconDashboard} width={20} />
-                                                 <h1 className="font-bold pl-[6px] text-white text-[15px]">Dashboard</h1>
-                                          </div>
-                                   </Link>
-                            </div>
                             {/* Menu List Components */}
+                            <MenuList iconMenu={IconDashboard} href="/admin/dashboard">Dashboard</MenuList>
                             <MenuList iconMenu={IconClient} href="/admin/client">Klien</MenuList>
                             <MenuList iconMenu={IconProject} href="/admin/project">Projek</MenuList>
                             <MenuList iconMenu={IconProposals} href="/admin/proposals">Proposals</MenuList>
@@ -52,8 +44,10 @@ const Sidebar = () => {
 
 // Menu List Components
 const MenuList = ({ href, iconMenu, children }: InterfaceMenu) => {
+       // State Active when located in Current Page
+       // const currentPage = window.location.pathname === href ${currentPage && "bg-[#32489A]"}
        return (
-              <div className="mt-1 bg-none hover:bg-[#32489A] hover:font-bold transition-all hover:cursor-pointer py-[10px] px-3 rounded-md flex items-center">
+              <div className={` cursor-pointer text-white hover:bg-[#32489A] py-[10px] my-2 px-3 rounded-md flex items-center transition-all hover:cursor-pointer`}>
                      <Link href={href}>
                             <div className="flex items-center">
                                    <Image src={iconMenu} width={20} />
