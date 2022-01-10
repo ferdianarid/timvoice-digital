@@ -108,14 +108,13 @@ const createInvoices: NextPage = () => {
                                                         <div className="w-full flex flex-col justify-start">
                                                                <h1 className="text-md font-bold pt-8 pb-4">Batas Awal Tagihan</h1>
                                                                <div className="w-full flex justify-between items-center gap-x-4">
-                                                                      <input type="date" value="date" name="date" className="pl-2 w-full border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" />
-                                                                      <input type="date" value="date" name="date" className="pl-2 w-full border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" />
+                                                                      <input type="date" value="" name="date" className="pl-2 w-full border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" />
+                                                                      <input type="date" value="" name="date" className="pl-2 w-full border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" />
                                                                </div>
                                                         </div>
                                                  </div>
                                           </div>
                                    </div>
-
 
                                    {/* Informasi Dasar */}
                                    <div className="w-full bg-white my-8 h-auto rounded-lg px-10 pb-8">
@@ -148,7 +147,7 @@ const createInvoices: NextPage = () => {
                                           </div>
                                           <div className="flex items-center justify-between">
                                                  <div className="flex flex-col">
-                                                        <textarea className='border border-gray-200 rounded-sm my-4' id="" name="" rows={4} cols={0} />
+                                                        <textarea placeholder='Write text' className='p-4 border border-gray-200 rounded-sm my-4' id="" name="" rows={4} cols={0} />
                                                         <button className='bg-blue-50 hover:bg-blue-100 rounded-sm py-2 px-4 text-sm font-bold text-blue-600 text-center'>Tambah Pekerjaan</button>
                                                  </div>
                                           </div>
@@ -194,7 +193,76 @@ const createInvoices: NextPage = () => {
                                                         <input type="search" name="query" className="w-[50%] rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Cari" value="IDR 5.000.000" autoComplete="on" />
                                                  </div>
                                           </div>
+
+                                          <h1 className='font-bold mt-6'>Jangka Waktu Pembayaran</h1>
+                                          {/* Keterangan Pekerjaan */}
+                                          <div className="grid grid-cols-3 grid-rows-4 mt-2 gap-4">
+                                                 <div className=' flex items-center'>
+                                                        <h1 className='font-bold'>Keterangan Pekerjaan</h1>
+                                                 </div>
+                                                 <div className='flex items-center'>
+                                                        <h1 className='font-bold'>Persentase</h1>
+                                                 </div>
+                                                 <div className='mr-10 flex items-center justify-end'>
+                                                        <h1 className='font-bold'>Jumlah</h1>
+                                                 </div>
+
+                                                 <div className=' flex items-start flex-col'>
+                                                        <input type="search" name="query" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-semibold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Down Payment ( DP )" value="Down Payment ( DP )" autoComplete="on" />
+                                                 </div>
+                                                 <div className='flex items-center'>
+                                                        <input type="search" name="query" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Cari" value="50%" autoComplete="on" />
+                                                 </div>
+                                                 <div className='mr-10 flex items-center justify-end'>
+                                                        <input type="search" name="query" className="w-[50%] rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Cari" value="IDR 5.000.000" autoComplete="on" />
+                                                 </div>
+
+                                                 <div className=' flex items-start flex-col'>
+                                                        <input type="date" value="" name="date" className="w-[70%] pl-2 border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" />
+                                                 </div>
+                                                 <div className='flex items-center'>
+                                                 </div>
+                                                 <div className='mr-10 flex items-center justify-end'>
+
+                                                 </div>
+
+                                                 <div className=' flex items-start flex-col'>
+                                                        <input type="search" name="query" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-semibold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Down Payment ( DP )" value="Down Payment ( DP )" autoComplete="on" />
+                                                 </div>
+                                                 <div className='flex items-center'>
+                                                        <input type="search" name="query" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Cari" value="50%" autoComplete="on" />
+                                                 </div>
+                                                 <div className='mr-10 flex items-center justify-end'>
+                                                        <input type="search" name="query" className="w-[50%] rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Cari" value="IDR 5.000.000" autoComplete="on" />
+                                                 </div>
+
+                                                 <div className=' flex items-start flex-col'>
+                                                        <input type="date" value="" name="date" className="w-[70%] pl-2 border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" />
+                                                 </div>
+                                                 <div className='flex items-center'>
+                                                 </div>
+                                                 <div className='mr-10 flex items-center justify-end'>
+
+                                                 </div>
+
+                                                 <div className=' flex items-center'>
+                                                        <button className='w-[70%] bg-blue-50 hover:bg-blue-100 rounded-sm py-2 px-4 text-sm font-bold text-blue-600 text-center'>Tambah Jangka Waktu</button>
+                                                 </div>
+                                          </div>
                                    </div>
+
+                                   {/* Informasi Dasar */}
+                                   <div className="w-full bg-white my-8 h-auto rounded-lg px-10 pb-8">
+                                          <h1 className="py-6 text-[28px] font-bold">Metode Pembayaran</h1>
+                                          <div className="ml-[100px]">
+                                                 <div className="border border-gray-200">
+                                                        <h1 className="text-md font-bold py-4">Transfer Bank</h1>
+
+
+                                                 </div>
+                                          </div>
+                                   </div>
+
                             </div>
                      </DashboardLayouts>
               </React.Fragment >

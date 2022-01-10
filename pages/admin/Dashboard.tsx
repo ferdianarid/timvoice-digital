@@ -50,7 +50,7 @@ const NumStatistics = ({ imgStatistics, altStatistics, title, count }: Interface
 
 // Homepages
 const Dashboard: NextPage = () => {
-	const [showProfiles, setshowProfiles] = React.useState()
+	const [showProfiles, setshowProfiles] = React.useState(true)
 	return (
 		<React.Fragment>
 			<Head>

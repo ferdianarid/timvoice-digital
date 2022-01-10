@@ -25,15 +25,12 @@ import DeleteOption from '../../../components/DeleteOption'
 // Invoices Page
 const Invoices: NextPage = () => {
        // initial state | component rendered
-       const [showDownloadComponent, setShowDownloadComponent] = React.useState(true)
+       const [showDownloadComponent, setShowDownloadComponent] = React.useState(false)
 
        // delete option showing
        const [deleteOptions, setDeleteOptions] = React.useState(false)
 
        // show download action
-       const ShowDownload = () => {
-              setShowDownloadComponent(true)
-       }
 
        return (
               <React.Fragment>
@@ -85,14 +82,14 @@ const Invoices: NextPage = () => {
                                                         {/* <!-- Export Button --> */}
                                                         <div className="flex items-center h-auto px-6 w-auto bg-[#F7F8FD] rounded-md">
                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="#405DC7">
-                                                                      <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd" />
+                                                                      <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clipRule="evenodd" />
                                                                </svg>
                                                                <p className="text-[#405DC7] font-bold py-2 pl-1 text-lg-bold">Export</p>
                                                         </div>
                                                         {/* <!--  Filter Button --> */}
                                                         <div className="flex items-center h-auto px-6 w-auto bg-[#F7F8FD] rounded-md">
                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="#405DC7">
-                                                                      <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
+                                                                      <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" />
                                                                </svg>
                                                                <p className="text-[#405DC7] font-bold py-2 pl-1  text-lg-bold">Filter</p>
                                                         </div>

@@ -14,7 +14,7 @@ const Login: NextPage = () => {
                      {/* <!-- Heading Login Form --> */}
                      <div className="headingLogin max-w-2xl m-auto mt-8 text-center">
                             <h1 className="text-[2rem] font-bold md:text-heading-lg">Login to access dashboard</h1>
-                            <p className="text-small text-gray-500 font-normal pt-2">Manage your business in a simplest way !</p>	
+                            <p className="text-small text-gray-500 font-normal pt-2">Manage your business in a simplest way !</p>
                      </div>
                      {/* <!-- Login Form --> */}
                      <form className="max-w-sm m-auto mt-8 mb-8 rounded-lg border border-gray-300 py-8 px-10" action="/login" method="post">
