@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "design/Modals.tsx"
-  ],
+, "pages/authentication/authgithub.jsx"  ],
   "exclude": [
     "node_modules"
   ]
