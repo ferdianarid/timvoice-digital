@@ -50,7 +50,6 @@ const NumStatistics = ({ imgStatistics, altStatistics, title, count }: Interface
 
 // Homepages
 const Dashboard: NextPage = () => {
-	const [showProfiles, setshowProfiles] = React.useState(true)
 	return (
 		<React.Fragment>
 			<Head>
@@ -70,14 +69,14 @@ const Dashboard: NextPage = () => {
 					{/* <!-- Summary and Revenue --> */}
 					<div className="w-[1240px] h-auto px-16 bg-blue-50 flex justify-between">
 						{/* <!-- Summary Chart --> */}
-						<div className="w-[40%] h-auto py-8 px-10 bg-white rounded-lg">
+						<div className="w-[40%] mt-8 h-auto py-8 px-10 bg-white rounded-lg">
 							<h1 className="font-bold text-[28px] mb-4">Ringkasan</h1>
 							<DoughnutChart />
 							{/* <!-- <InvoicesChart /> --> */}
 							{/* <LineChart :chartData="usersData" :options="chartOptions" class="line-chart" /> */}
 						</div>
 						{/* <!--  RevenueStatistics --> */}
-						<div className="w-[60%] h-auto py-8 px-10 bg-white rounded-lg ml-8">
+						<div className="w-[60%] mt-8 h-auto py-8 px-10 bg-white rounded-lg ml-8">
 							<div className="flex justify-between items-center">
 								<h1 className="font-bold text-[28px]">Pendapatan</h1>
 
