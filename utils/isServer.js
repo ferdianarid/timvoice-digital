@@ -1,2 +1,3 @@
-export const isServer = () => typeof window === "undefined";
-export const currentPage = window.location.pathname
+const isServer = () => typeof window === "undefined"
+
+export default isServer
