@@ -1,35 +1,38 @@
 {
-  "name": "dashboard-timvoice-next",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@headlessui/react": "^1.4.2",
-    "@heroicons/react": "^1.0.5",
-    "chart.js": "^3.6.2",
-    "classnames": "^2.3.1",
-    "faker": "^5.5.3",
-    "next": "12.0.7",
-    "next-auth": "^4.0.5",
-    "react": "17.0.2",
-    "react-chartjs-2": "^4.0.0",
-    "react-countup": "^6.1.0",
-    "react-dom": "17.0.2",
-    "react-hot-toast": "^2.1.1"
-  },
-  "devDependencies": {
-    "@types/faker": "^5.5.9",
-    "@types/node": "16.11.12",
-    "@types/react": "17.0.37",
-    "autoprefixer": "^10.4.0",
-    "eslint": "8.4.1",
-    "eslint-config-next": "12.0.7",
-    "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.1",
-    "typescript": "4.5.3"
-  }
+    "name": "dashboard-timvoice-next",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "knex": "knex"
+    },
+    "dependencies": {
+        "@headlessui/react": "^1.4.2",
+        "@heroicons/react": "^1.0.5",
+        "chart.js": "^3.6.2",
+        "classnames": "^2.3.1",
+        "faker": "^5.5.3",
+        "knex": "^0.95.15",
+        "mysql": "^2.18.1",
+        "next": "12.0.7",
+        "next-auth": "^4.0.5",
+        "react": "17.0.2",
+        "react-chartjs-2": "^4.0.0",
+        "react-countup": "^6.1.0",
+        "react-dom": "17.0.2",
+        "react-hot-toast": "^2.1.1"
+    },
+    "devDependencies": {
+        "@types/faker": "^5.5.9",
+        "@types/node": "16.11.12",
+        "@types/react": "17.0.37",
+        "autoprefixer": "^10.4.0",
+        "eslint": "8.4.1",
+        "eslint-config-next": "12.0.7",
+        "postcss": "^8.4.5",
+        "tailwindcss": "^3.0.1",
+        "typescript": "4.5.3"
+    }
 }
