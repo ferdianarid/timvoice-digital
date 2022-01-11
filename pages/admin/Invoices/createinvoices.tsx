@@ -254,15 +254,77 @@ const createInvoices: NextPage = () => {
                                    {/* Informasi Dasar */}
                                    <div className="w-full bg-white my-8 h-auto rounded-lg px-10 pb-8">
                                           <h1 className="py-6 text-[28px] font-bold">Metode Pembayaran</h1>
-                                          <div className="ml-[100px]">
-                                                 <div className="border border-gray-200">
+                                          <div className="w-full px-8 border border-gray-200 rounded-lg">
+                                                 {/* Transfer Bank */}
+                                                 <div className="transfer-bank pt-8">
                                                         <h1 className="text-md font-bold py-4">Transfer Bank</h1>
+                                                        <div className="mt-2">
+                                                               <h1 className='font-bold mt-6 mb-2'>Pilih Layanan Bank</h1>
+                                                               <select className=" mt-2 font-medium w-full border border-gray-200 rounded-[4px] py-2 px-4 mb-4 text-md bg-white" name="pembayaran" id="pembayaran" >
+                                                                      <option className='bg-white font-medium hover:bg-[#405DC7]' value="CSV">PayPal Account</option>
+                                                                      <option className='bg-white font-medium hover:bg-[#405DC7]' value="XLS">Bank BCA</option>
+                                                               </select>
+                                                        </div>
+                                                 </div>
+                                                 {/* Section Rekening */}
+                                                 <div className="w-full flex justify-between gap-x-4 mt-4">
+                                                        <div className="w-[50%]">
+                                                               <h1 className='font-bold mt-6 mb-2'>Nomor Rekening</h1>
+                                                               <input
+                                                                      type="search"
+                                                                      name="query"
+                                                                      className="w-full border border-gray-200 rounded-[4px] mt-2 py-2 px-4 mb-4 text-md text-gray-900  pl-4 focus:outline-blue-800 focus:text-gray-900"
+                                                                      placeholder="Tuliskan Nomor Rekening"
+                                                                      autoComplete="on"
+                                                               />
+                                                        </div>
+                                                        <div className="w-[50%]">
+                                                               <h1 className='font-bold mt-6 mb-2'>Nama Pemilik</h1>
+                                                               <input
+                                                                      type="search"
+                                                                      name="query"
+                                                                      className="w-full border border-gray-200 rounded-[4px] mt-2 py-2 px-4 mb-4 text-md text-gray-900  pl-4 focus:outline-blue-800 focus:text-gray-900"
+                                                                      placeholder="Tuliskan Nama Pemilik"
+                                                                      autoComplete="on"
+                                                               />
+                                                        </div>
+                                                 </div>
 
-
+                                                 {/* Transfer Bank */}
+                                                 <div className="transfer-bank">
+                                                        <div className="mt-2">
+                                                               <h1 className='font-bold mt-6 mb-2'>Pilih Layanan Bank</h1>
+                                                               <select className=" mt-2 font-medium w-full border border-gray-200 rounded-[4px] py-2 px-4 mb-4 text-md bg-white" name="pembayaran" id="pembayaran" >
+                                                                      <option className='bg-white font-medium hover:bg-[#405DC7]' value="CSV">PayPal Account</option>
+                                                                      <option className='bg-white font-medium hover:bg-[#405DC7]' value="XLS">Bank BCA</option>
+                                                               </select>
+                                                        </div>
+                                                 </div>
+                                                 {/* Section Rekening */}
+                                                 <div className="w-full flex justify-between gap-x-4 mt-4 pb-8">
+                                                        <div className="w-[50%]">
+                                                               <h1 className='font-bold mt-6 mb-2'>Nomor Rekening</h1>
+                                                               <input
+                                                                      type="search"
+                                                                      name="query"
+                                                                      className="w-full border border-gray-200 rounded-[4px] mt-2 py-2 px-4 mb-4 text-md text-gray-900  pl-4 focus:outline-blue-800 focus:text-gray-900"
+                                                                      placeholder="Tuliskan Nomor Rekening"
+                                                                      autoComplete="on"
+                                                               />
+                                                        </div>
+                                                        <div className="w-[50%]">
+                                                               <h1 className='font-bold mt-6 mb-2'>Nama Pemilik</h1>
+                                                               <input
+                                                                      type="search"
+                                                                      name="query"
+                                                                      className="w-full border border-gray-200 rounded-[4px] mt-2 py-2 px-4 mb-4 text-md text-gray-900  pl-4 focus:outline-blue-800 focus:text-gray-900"
+                                                                      placeholder="Tuliskan Nama Pemilik"
+                                                                      autoComplete="on"
+                                                               />
+                                                        </div>
                                                  </div>
                                           </div>
                                    </div>
-
                             </div>
                      </DashboardLayouts>
               </React.Fragment >

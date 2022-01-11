@@ -2,6 +2,7 @@ import React from 'react'
 import { NextPage } from 'next'
 import Image from "next/image"
 
+// import paid label badge
 import PaidLabel from "../../../public/paidLabel.svg"
 
 // import Dashboard Layouts
@@ -15,10 +16,15 @@ import bankcentral from "../../../public/bca.png"
 import paypal from "../../../public/paypal.png"
 import previewFiles from "../../../public/previewfiles.svg"
 
+// import draft status badge
 import { DraftStatus } from '../../../components/partials/StateStatus'
+
+// import toast success
 import { successNotify } from '../../../components/partials/ToastNotify'
+
 import { Toaster } from 'react-hot-toast'
 
+// import modals export
 import ModalExport from '../../../components/ModalExport'
 
 // Preview Invoices
