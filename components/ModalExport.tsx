@@ -9,7 +9,29 @@ import CloseIcon from "../public/close.svg"
 import { CopyButton, SendButton } from './partials/ButtonAction'
 
 const ModalExport = () => {
+       // show modals
        const [isShowModal, setisShowModal] = React.useState(true)
+
+       // push input
+       const [pushInput, setPushInput] = React.useState(false)
+
+       // push input handler
+       const pushInputHandler = () => {
+              setPushInput(true)
+       }
+
+       // input components
+       const ShiftInput = () => {
+              return (
+                     <input
+                            type="search"
+                            name="query"
+                            className="w-full border border-gray-200 rounded-[4px] mt-0 py-2 px-4 mb-4 text-md text-gray-900  pl-4 focus:outline-blue-800 focus:text-gray-900"
+                            placeholder="recipient@email.com"
+                            autoComplete="on"
+                     />
+              )
+       }
        const ModalCard = () => {
               return (
                      <div className="max-w-[500px] bg-white shadow-xl rounded-lg h-auto p-6 z-30 top-[3%] left-[40%] fixed">
@@ -29,7 +51,10 @@ const ModalExport = () => {
                                           placeholder="recipient@email.com"
                                           autoComplete="on"
                                    />
-                                   <button className="flex bg-[#F7F8FD] hover:bg-blue-600 hover:text-white text-[#405DC7]  font-bold py-2 px-4 rounded">
+                                   {
+                                          pushInput && <ShiftInput />
+                                   }
+                                   <button onClick={pushInputHandler} className="flex bg-[#F7F8FD] hover:bg-blue-600 hover:text-white text-[#405DC7]  font-bold py-2 px-4 rounded">
                                           <svg
                                                  xmlns="http://www.w3.org/2000/svg"
                                                  className="h-6 w-6"
