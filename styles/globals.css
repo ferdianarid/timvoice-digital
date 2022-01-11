@@ -5,6 +5,11 @@
     font-family: "Mulish", sans-serif;
 }
 
+.background-gradient {
+    height: 620px;
+    background: linear-gradient(180deg, rgba(215, 221, 244, 0.5) 0%, rgba(215, 221, 244, 0) 100%);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
