@@ -45,9 +45,9 @@ const Sidebar = () => {
 // Menu List Components
 const MenuList = ({ href, iconMenu, children }: InterfaceMenu) => {
        // State Active when located in Current Page
-       // const currentPage = window.location.pathname === href ${currentPage && "bg-[#32489A]"}
+       const currentPage = window.location.pathname === href
        return (
-              <div className={` cursor-pointer text-white hover:bg-[#32489A] py-[10px] my-2 px-3 rounded-md flex items-center transition-all hover:cursor-pointer`}>
+              <div className={`${currentPage && "bg-[#32489A]"} cursor-pointer text-white hover:bg-[#32489A] py-[10px] my-2 px-3 rounded-md flex items-center transition-all hover:cursor-pointer`}>
                      <Link href={href}>
                             <div className="flex items-center">
                                    <Image src={iconMenu} width={20} />
