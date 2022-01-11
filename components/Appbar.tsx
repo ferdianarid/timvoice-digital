@@ -18,6 +18,9 @@ import { ImageProps } from "../interfaces/ImageOption"
 // Interface Link Action
 import { LinkActionProps } from '../interfaces/LinkAction'
 
+// import Create Invoice Modals
+import ModalCreateInvoices from './ModalCreateInvoices'
+
 // Image Option Component
 const ImageOptions = ({ appBarIcon, alt }: ImageProps) => {
        return (
@@ -50,8 +53,15 @@ const ModalInvoice = () => {
        const openModal = () => {
               setIsOpen(true)
        }
+
+       // state show modal create invoice
+       const [showCreate, setShowCreate] = useState(false)
        return (
               <React.Fragment>
+                     {/* Modal Create Invoices */}
+                     {
+                            showCreate && <ModalCreateInvoices />
+                     }
                      {/* Create Button */}
                      <div className="w-[123px] text-center font-bold ml-0 md:ml-1 no-underline flex items-center px-4 py-[10px] leading-none bg-blue-700 border-blue-700 border rounded text-white hover:border-transparent hover:bg-blue-800 mt-4 sm:mt-0" >
                             <div className='flex items-center'>
@@ -60,8 +70,9 @@ const ModalInvoice = () => {
                                           Buat
                                    </button>
                             </div>
+
                             <Transition appear show={isOpen} as={Fragment}>
-                                   <Dialog as="div" className="fixed inset-8 z-10" onClose={closeModal}>
+                                   <Dialog as="div" className="fixed inset-8 z-10 ml-40 mt-4" onClose={closeModal}>
                                           <div className="min-h-screen px-4 text-center">
                                                  <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                                                         <Dialog.Overlay className="fixed inset-0 right-6" />
@@ -73,65 +84,78 @@ const ModalInvoice = () => {
                                                  {/* Modals */}
                                                  {/* Children Modals / Content */}
                                                  <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
-                                                        <div className="inline-block w-full bg-white max-w-xs p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-lg rounded-lg">
-                                                               {/* Card */}
-                                                               <div className="w-full flex justify-between items-center py-4  border-b border-blue-200">
+                                                        <div className="inline-block w-full bg-white max-w-[290px] p-6 px-4 my-8 overflow-hidden text-left align-middle transition-all transform shadow-lg rounded-lg">
+                                                               <div onClick={() => setShowCreate(!showCreate)} className="hover:bg-blue-50 hover:cursor-pointer w-full flex justify-start items-center py-4 px-2  border-b border-blue-100">
                                                                       <Image src={invoiceIcon} alt="invoice" width={48} height={48} />
-                                                                      <div className="desc">
+                                                                      <div className="desc ml-4">
                                                                              <Dialog.Title as="h3" className="text-sm font-bold leading-none text-blue-800">
                                                                                     TAGIHAN
                                                                              </Dialog.Title>
                                                                              <div className="mt-2">
                                                                                     <p className="text-sm text-gray-400">
-                                                                                           Your payment has successfully
+                                                                                           Buat Tagihan
                                                                                     </p>
                                                                              </div>
                                                                       </div>
+                                                                      <div className="ml-auto">
+                                                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" viewBox="0 0 20 20" fill="currentColor">
+                                                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
+                                                                             </svg>
+                                                                      </div>
                                                                </div>
-                                                               <div className="w-full flex justify-between items-center py-4  border-b border-blue-200">
+                                                               <div className="w-full flex justify-start items-center py-4  border-b border-blue-100 hover:bg-blue-50 hover:cursor-pointer">
                                                                       <Image src={contractIcon} alt="invoice" width={48} height={48} />
-                                                                      <div className="desc">
+                                                                      <div className="desc ml-4">
                                                                              <Dialog.Title as="h3" className="text-sm font-bold leading-none text-blue-800">
                                                                                     KONTRAK
                                                                              </Dialog.Title>
                                                                              <div className="mt-2">
                                                                                     <p className="text-sm text-gray-400">
-                                                                                           Your payment has successfully
+                                                                                           Buat Kontrak
                                                                                     </p>
                                                                              </div>
                                                                       </div>
+                                                                      <div className="ml-auto">
+                                                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" viewBox="0 0 20 20" fill="currentColor">
+                                                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
+                                                                             </svg>
+                                                                      </div>
                                                                </div>
-                                                               <div className="w-full flex justify-between items-center py-4  border-b border-blue-200">
+                                                               <div className="w-full flex justify-start items-center py-4  border-b border-blue-100 hover:bg-blue-50 hover:cursor-pointer">
                                                                       <Image src={proposalsIcon} alt="invoice" width={48} height={48} />
-                                                                      <div className="desc">
+                                                                      <div className="desc ml-4">
                                                                              <Dialog.Title as="h3" className="text-sm font-bold leading-none text-blue-800">
                                                                                     PROPOSALS
                                                                              </Dialog.Title>
                                                                              <div className="mt-2">
                                                                                     <p className="text-sm text-gray-400">
-                                                                                           Your payment has successfully
+                                                                                           Buat Proposals
                                                                                     </p>
                                                                              </div>
                                                                       </div>
+                                                                      <div className="ml-auto">
+                                                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" viewBox="0 0 20 20" fill="currentColor">
+                                                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
+                                                                             </svg>
+                                                                      </div>
                                                                </div>
-                                                               <div className="w-full flex justify-between items-center py-4  border-b border-blue-200">
+                                                               <div className="w-full flex justify-start items-center py-4 hover:bg-blue-50 hover:cursor-pointer">
                                                                       <Image src={invoiceIcon} alt="invoice" width={48} height={48} />
-                                                                      <div className="desc">
+                                                                      <div className="desc ml-4">
                                                                              <Dialog.Title as="h3" className="text-sm font-bold leading-none text-blue-800">
                                                                                     CLIENTS
                                                                              </Dialog.Title>
                                                                              <div className="mt-2">
                                                                                     <p className="text-sm text-gray-400">
-                                                                                           Your payment has successfully
+                                                                                           Tambahkan Klien
                                                                                     </p>
                                                                              </div>
                                                                       </div>
-                                                               </div>
-                                                               {/* button close */}
-                                                               <div className="mt-4">
-                                                                      <button type="button" className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500" onClick={closeModal}>
-                                                                             Got it, thanks!
-                                                                      </button>
+                                                                      <div className="ml-auto">
+                                                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" viewBox="0 0 20 20" fill="currentColor">
+                                                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
+                                                                             </svg>
+                                                                      </div>
                                                                </div>
                                                         </div>
                                                  </Transition.Child>
