@@ -22,6 +22,9 @@ import DownloadOption from '../../../components/DownloadOption'
 // import delete option
 import DeleteOption from '../../../components/DeleteOption'
 
+// import Export Component
+import ExportInvoice from '../../../components/ExportInvoice'
+
 // Invoices Page
 const Invoices: NextPage = () => {
        // initial state | component rendered
@@ -29,6 +32,9 @@ const Invoices: NextPage = () => {
 
        // delete option showing
        const [deleteOptions, setDeleteOptions] = React.useState(false)
+
+       // show Export option
+       const [showExport, setShowExport] = useState(false)
 
        return (
               <React.Fragment>
@@ -82,7 +88,10 @@ const Invoices: NextPage = () => {
                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="#405DC7">
                                                                       <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clipRule="evenodd" />
                                                                </svg>
-                                                               <p className="text-[#405DC7] font-bold py-2 pl-1 text-lg-bold">Export</p>
+                                                               {
+                                                                      showExport && <ExportInvoice />
+                                                               }
+                                                               <a onClick={() => setShowExport(!showExport)} className="text-[#405DC7] font-bold py-2 pl-1 text-lg-bold">Export</a>
                                                         </div>
                                                         {/* <!--  Filter Button --> */}
                                                         <div className="flex items-center h-auto hover:cursor-pointer px-6 w-auto bg-[#F7F8FD] rounded-md">
