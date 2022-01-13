@@ -48,6 +48,14 @@ const NumStatistics = ({ imgStatistics, altStatistics, title, count }: Interface
 	)
 }
 
+export async function getStaticProps(context: any) {
+	return {
+		props: {
+			activity: []
+		}
+	}
+}
+
 // Homepages
 const Dashboard: NextPage = () => {
 	return (

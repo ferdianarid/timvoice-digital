@@ -10,6 +10,13 @@ import CoverImage from "../../../public/invoices/UploadCover.png"
 // import dashboard layouts
 import DashboardLayouts from '../../../layouts/DashboardLayouts'
 
+import temaOne from "../../../public/tema1.png"
+import temaTwo from "../../../public/tema2.png"
+import temaThree from "../../../public/tema3.png"
+import temaFour from "../../../public/tema4.png"
+
+import checkTema from "../../../public/checklist.png"
+
 // pages create invoices
 const createInvoices: NextPage = () => {
        return (
@@ -323,6 +330,28 @@ const createInvoices: NextPage = () => {
                                                                />
                                                         </div>
                                                  </div>
+                                          </div>
+
+                                          <div className="w-full px-8 border border-gray-200 rounded-lg mt-8">
+                                                 <h1 className="py-6 text-lg font-bold">Paypal Account</h1>
+                                                 <input
+                                                        type="search"
+                                                        name="query"
+                                                        className="w-full border border-gray-200 rounded-[4px] py-2 px-4 mb-4 text-md text-gray-900  pl-4 focus:outline-blue-800 focus:text-gray-900"
+                                                        placeholder="Tuliskan Email Paypal Anda"
+                                                        autoComplete="on"
+                                                 />
+                                          </div>
+                                   </div>
+                                   <div className="w-full bg-white my-4 h-auto rounded-lg px-10 pb-8">
+                                          <h1 className="py-6 text-[28px] font-bold">Pengaturan Tagihan</h1>
+                                          <h1 className="py-6 text-lg font-bold">Pilih Tema Untuk Tagihan</h1>
+                                          <div className="flex items-center justify-between">
+                                                 <Image src={temaOne} />
+                                                 <Image src={temaTwo} />
+                                                 <Image src={temaTwo} />
+                                                 <Image src={temaThree} />
+                                                 <Image src={temaFour} />
                                           </div>
                                    </div>
                             </div>
