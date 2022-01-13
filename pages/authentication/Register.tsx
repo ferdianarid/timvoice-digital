@@ -1,5 +1,9 @@
-import { NextPage } from 'next'
-import React, { useState } from 'react'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import React, { SyntheticEvent, useState } from 'react'
+import * as yup from "yup"
+
+import backendApi from '../../configs/backendApi'
 
 // import Auth Layouts
 import AuthLayouts from "../../layouts/AuthLayouts"
@@ -7,25 +11,38 @@ import AuthLayouts from "../../layouts/AuthLayouts"
 // import Google Icon
 import GoogleIcon from "../../public/google.svg"
 
-const Register: NextPage = () => {
-       const StateLoadingToast = () => {
-              return <div className="py-1 px-3 bg-blue-400 text-white rounded-md w-fit">Loading ...</div>
-       }
-       const StateSuccessToast = () => {
-              return <div className="py-1 px-3 bg-green-700 text-white rounded-md w-fit">Successfully Submit</div>
-       }
-       const [submitData, setSubmitData] = useState("")
+const Register = () => {
+       const [notification, setNotification] = useState("")
 
        const onDataIsSubmit = () => {
-
               setTimeout(() => {
-                     setSubmitData(`${<StateLoadingToast />}`)
+                     setNotification("Loading....")
               }, 2000)
-
               setTimeout(() => {
-                     setSubmitData(`${<StateSuccessToast />}`)
+                     setNotification("Successfully Registered")
               }, 4000)
        }
+
+       const [name, setName] = useState("")
+       const [email, setEmail] = useState("")
+       const [password, setPassword] = useState("")
+
+       const OnSubmitHandler = async (event: any) => {
+              event.preventDefault()
+              await axios.post("http://localhost:8000/api/register", {
+                     name: name,
+                     email: email,
+                     password: password
+              }, {
+                     headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json"
+                     },
+              }).then(response => {
+                     console.log(response.data)
+              }).catch(err => console.log(err))
+       }
+
        return (
               <React.Fragment>
                      <AuthLayouts>
@@ -35,21 +52,21 @@ const Register: NextPage = () => {
                                    <p className="text-small text-gray-500 font-normal pt-2">Join and get easy way experience to manage your business!</p>
                             </div>
                             {/* <!-- Login Form --> */}
-                            <form className="max-w-sm m-auto mt-8 mb-8 rounded-lg border border-gray-300 py-8 px-10" action="/login" method="post">
+                            <form onSubmit={OnSubmitHandler} className="max-w-sm m-auto mt-8 mb-8 rounded-lg border border-gray-300 py-8 px-10">
                                    {/* <!-- Form Full Name --> */}
                                    <div className="mb-4">
                                           <label htmlFor="name" className="block text-gray-700 text-sm font-medium mb-2">Full Name</label>
-                                          <input type="text" id="fullname" name="fullname" placeholder="ex. Ferdian Ahmad" className="appereance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight" />
+                                          <input type="text" required id="name" value={name} name="name" onChange={event => setName(event.target.value)} placeholder="ex. Ferdian Ahmad" className="appereance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight" />
                                    </div>
                                    {/* <!-- Form Email Address --> */}
                                    <div className="mb-4">
                                           <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">Email</label>
-                                          <input type="text" id="email" name="email" placeholder="example@email.com" className="appereance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight" />
+                                          <input type="text" id="email" value={email} required name="email" onChange={event => setEmail(event.target.value)} placeholder="example@email.com" className="appereance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight" />
                                    </div>
                                    {/* <!-- Form Password --> */}
                                    <div className="mb-4">
                                           <label htmlFor="password" className="block text-gray-700 text-sm font-medium mb-2">Password</label>
-                                          <input type="password" id="password" name="password" placeholder="********" className="appereance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight" />
+                                          <input type="password" value={password} id="password" required name="password" onChange={event => setPassword(event.target.value)} placeholder="********" className="appereance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight" />
                                    </div>
                                    {/* <!-- Input Checkbox --> */}
                                    <div className="mb-4">
@@ -59,10 +76,10 @@ const Register: NextPage = () => {
                                           </label>
                                    </div>
                                    {/* <!-- Register Button --> */}
-                                   <a href="/auth/login" onClick={onDataIsSubmit} className="mb-4 w-full text-center font-bold ml-0 no-underline inline-block px-4 py-3 leading-none bg-blue-800 border-blue-800 border rounded text-white hover:border-transparent hover:bg-white hover:text-blue-800 mt-4 sm:mt-0">
+                                   <button type="submit" onClick={onDataIsSubmit} className="mb-4 w-full text-center font-bold ml-0 no-underline inline-block px-4 py-3 leading-none bg-blue-800 border-blue-800 border rounded text-white hover:border-transparent hover:bg-white hover:text-blue-800 mt-4 sm:mt-0">
                                           <p className="text-lg font-bold">Register</p>
-                                   </a>
-                                   <p className="font-bold text-xl text-blue-700 my-2">Status : {submitData}</p>
+                                   </button>
+                                   <p className="font-bold text-xl text-blue-700 my-2">Status : {notification}</p>
                                    {/* <!-- Google OAuth Button --> */}
                                    <div className="mb-4 mt-4">
                                           <a href="/auth/login" className="w-full flex justify-center items-center text-center font-bold ml-0 no-underline px-4 py-3 leading-none bg-white border-gray-200 border rounded text-blue-800 hover:bg-white mt-4 sm:mt-0">
