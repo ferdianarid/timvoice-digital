@@ -8,4 +8,11 @@ const Toaster = () => {
        )
 }
 
+const StateLoadingToast = () => {
+       return <div className="py-1 px-3 bg-blue-400 text-white rounded-md w-fit">Loading ...</div>
+}
+const StateSuccessToast = () => {
+       return <div className="py-1 px-3 bg-green-700 text-white rounded-md w-fit">Successfully Submit</div>
+}
+
 export default Toaster

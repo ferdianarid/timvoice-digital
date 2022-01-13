@@ -1,4 +1,6 @@
 import React from 'react'
+
+// import  next image
 import Image from "next/image"
 
 // Interface Recent Activity Component
