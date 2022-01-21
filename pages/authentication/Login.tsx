@@ -15,25 +15,20 @@ const Login: NextPage = () => {
 
        const router = useRouter()
 
-
+       const data = { email, password }
 
        const SubmittingData = async (event: SyntheticEvent) => {
               event.preventDefault()
-              const jsonBody = JSON.stringify({
-                     email: email,
-                     password: password
-              })
+
               const requestApiLogin = await fetch("http://localhost:8000/api/login", {
                      method: "POST",
                      headers: {
                             "Content-Type": "application/json"
-                     },
-                     body: jsonBody
+                     }
               })
               if (!requestApiLogin.ok) {
                      alert("Not Authenticated")
               } else {
-
                      router.push("/admin/dashboard")
               }
 

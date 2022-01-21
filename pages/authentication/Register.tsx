@@ -1,17 +1,19 @@
 import axios from 'axios'
-import { useRouter } from 'next/router'
 import React, { SyntheticEvent, useState } from 'react'
 import * as yup from "yup"
-
 import backendApi from '../../configs/backendApi'
-
 // import Auth Layouts
 import AuthLayouts from "../../layouts/AuthLayouts"
-
 // import Google Icon
 import GoogleIcon from "../../public/google.svg"
 
+// import next router
+import { useRouter } from 'next/router'
+
 const Register = () => {
+       // initialize router redirect
+       const router = useRouter()
+
        const [notification, setNotification] = useState("")
 
        const onDataIsSubmit = () => {
@@ -29,6 +31,7 @@ const Register = () => {
 
        const OnSubmitHandler = async (event: any) => {
               event.preventDefault()
+
               await axios.post("http://localhost:8000/api/register", {
                      name: name,
                      email: email,
@@ -36,10 +39,10 @@ const Register = () => {
               }, {
                      headers: {
                             Accept: "application/json",
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
                      },
               }).then(response => {
-                     console.log(response.data)
+                     console.log(response)
               }).catch(err => console.log(err))
        }
 
@@ -76,7 +79,7 @@ const Register = () => {
                                           </label>
                                    </div>
                                    {/* <!-- Register Button --> */}
-                                   <button type="submit" onClick={onDataIsSubmit} className="mb-4 w-full text-center font-bold ml-0 no-underline inline-block px-4 py-3 leading-none bg-blue-800 border-blue-800 border rounded text-white hover:border-transparent hover:bg-white hover:text-blue-800 mt-4 sm:mt-0">
+                                   <button onClick={onDataIsSubmit} type="submit" className="mb-4 w-full text-center font-bold ml-0 no-underline inline-block px-4 py-3 leading-none bg-blue-800 border-blue-800 border rounded text-white hover:border-transparent hover:bg-white hover:text-blue-800 mt-4 sm:mt-0">
                                           <p className="text-lg font-bold">Register</p>
                                    </button>
                                    <p className="font-bold text-xl text-blue-700 my-2">Status : {notification}</p>
