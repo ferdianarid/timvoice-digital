@@ -3,6 +3,7 @@ import React from 'react'
 import DoughnutChart from '../components/chart/Doughnut'
 import LineChart from '../components/chart/LineChart'
 
+
 const chart = () => {
        return (
               <React.Fragment>

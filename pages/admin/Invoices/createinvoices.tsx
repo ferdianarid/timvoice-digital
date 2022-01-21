@@ -256,6 +256,7 @@ const createInvoices: NextPage = () => {
                                                         <button className='w-[70%] bg-blue-50 hover:bg-blue-100 rounded-sm py-2 px-4 text-sm font-bold text-blue-600 text-center'>Tambah Jangka Waktu</button>
                                                  </div>
                                           </div>
+
                                    </div>
 
                                    {/* Informasi Dasar */}
