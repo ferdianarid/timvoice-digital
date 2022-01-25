@@ -87,7 +87,6 @@ const Dashboard: NextPage = () => {
 						<div className="w-[60%] mt-8 h-auto py-8 px-10 bg-white rounded-lg ml-8">
 							<div className="flex justify-between items-center">
 								<h1 className="font-bold text-[28px]">Pendapatan</h1>
-
 								{/* <Dropdowns /> */}
 							</div>
 							<div className="w-full flex justify-between mt-8">

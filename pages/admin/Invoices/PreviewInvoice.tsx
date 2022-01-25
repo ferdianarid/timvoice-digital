@@ -29,6 +29,7 @@ import ModalExport from '../../../components/ModalExport'
 
 // Preview Invoices
 const PreviewInvoice: NextPage = () => {
+       // initial state show
        const [isShow, setIsShow] = React.useState(false)
        return (
               <React.Fragment>
