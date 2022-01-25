@@ -15,8 +15,14 @@ import temaTwo from "../../../public/tema2.png"
 import temaThree from "../../../public/tema3.png"
 import temaFour from "../../../public/tema4.png"
 
+import { DangerNotify } from '../../../components/partials/ToastNotify'
+import Router, { useRouter } from 'next/router'
+
 // pages create invoices
 const createInvoices: NextPage = () => {
+       const router = useRouter()
+       const [notification, setNotification] = useState("")
+
        const [tarif, setTarif] = useState("")
        const [jobs, setJobs] = useState("")
        const [jumlah, setJumlah] = useState("")
@@ -34,6 +40,8 @@ const createInvoices: NextPage = () => {
        const [jumlahDownPayment, setJumlahDownPayment] = useState("")
        const [valueDownPayment, setValueDownPayment] = useState("")
        const [layananBank, setLayananBank] = useState("")
+       const [namaPemilik, setNamaPemilik] = useState("")
+       const [nomorRekening, setNomorRekening] = useState("")
        const [randomNumber, setRandomNumber] = useState(1000)
 
        useEffect(() => {
@@ -43,6 +51,7 @@ const createInvoices: NextPage = () => {
        }, [])
 
        const data = JSON.stringify({
+              idInvoices: randomNumber,
               tarif: tarif,
               jobs: jobs,
               jumlah: jumlah,
@@ -59,12 +68,39 @@ const createInvoices: NextPage = () => {
               downPayment: downPayment,
               jumlahDownPayment: jumlahDownPayment,
               valueDownPayment: valueDownPayment,
-              layananBank: layananBank
+              layananBank: layananBank,
+              namaPemilik: namaPemilik,
+              nomorRekening: nomorRekening
        })
 
-       const sendData = (event: SyntheticEvent) => {
+       const sendData = async (event: SyntheticEvent) => {
               event.preventDefault()
-              console.log(data)
+
+              // check token in local storage
+              const access_token = localStorage.getItem("token")
+
+              const PostCreateInvoices = await fetch("http://localhost:8000/api/createInvoices", {
+                     method: "POST",
+                     headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${access_token}`
+                     },
+                     body: data
+              })
+
+              // check data submit status
+              if (!PostCreateInvoices.ok) {
+                     // set failed notification
+                     setNotification("Failed Create Invoices")
+                     console.log(notification)
+              }
+              //  set success notification
+              setNotification("Success Create Invoices")
+              console.log(notification)
+
+              // redirect user to dashboard page
+              router.push("/admin/dashboard")
        }
 
        return (
@@ -341,6 +377,7 @@ const createInvoices: NextPage = () => {
                                                                {/* Nomor rekening */}
                                                                <input
                                                                       type="text"
+                                                                      onChange={event => setNomorRekening(event.target.value)}
                                                                       name="rekening"
                                                                       className="w-full border border-gray-200 rounded-[4px] mt-2 py-2 px-4 mb-4 text-md text-gray-900  pl-4 focus:outline-blue-800 focus:text-gray-900"
                                                                       placeholder="Tuliskan Nomor Rekening"
@@ -352,6 +389,7 @@ const createInvoices: NextPage = () => {
                                                                {/* Nama Pemilik */}
                                                                <input
                                                                       type="search"
+                                                                      onChange={event => setNamaPemilik(event.target.value)}
                                                                       name="pemilik"
                                                                       className="w-full border border-gray-200 rounded-[4px] mt-2 py-2 px-4 mb-4 text-md text-gray-900  pl-4 focus:outline-blue-800 focus:text-gray-900"
                                                                       placeholder="Tuliskan Nama Pemilik"
