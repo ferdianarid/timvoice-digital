@@ -2,12 +2,16 @@ import React from 'react'
 import AuthLayouts from '../../layouts/AuthLayouts'
 
 const ForgotPassword: React.FunctionComponent = () => {
+
+       // initial state of success send state
        const [SuccessSend, setSuccessSend] = React.useState(false)
 
+       // change state if data email already submitted
        const SubmitHandler = () => {
               setSuccessSend(!SuccessSend)
        }
 
+       // render check if ckecklist is checked
        const CheckSuccess = () => {
               return (
                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w- mr-1" viewBox="0 0 20 20" fill="currentColor">

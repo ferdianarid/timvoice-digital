@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { SyntheticEvent } from 'react'
+import React, { SyntheticEvent, useEffect } from 'react'
 
 // import Auth Layout Pages
 import AuthLayouts from '../../layouts/AuthLayouts'
@@ -12,10 +12,11 @@ import GoogleIcon from "../../public/google.svg"
 const Login: NextPage = () => {
        const [email, setEmail] = React.useState("")
        const [password, setPassword] = React.useState("")
+       const [token, setToken] = React.useState("")
 
        const router = useRouter()
 
-       const data = { email, password }
+       const data = JSON.stringify({ email, password })
 
        const SubmittingData = async (event: SyntheticEvent) => {
               event.preventDefault()
@@ -23,17 +24,36 @@ const Login: NextPage = () => {
               const requestApiLogin = await fetch("http://localhost:8000/api/login", {
                      method: "POST",
                      headers: {
+                            Accept: "application/json",
                             "Content-Type": "application/json"
-                     }
+                     },
+                     body: data
               })
-              if (!requestApiLogin.ok) {
-                     alert("Not Authenticated")
-              } else {
-                     router.push("/admin/dashboard")
-              }
+
+              if (!requestApiLogin.ok) console.log(
+                     (`Failed Authentication ${requestApiLogin.status}`)
+              )
+              const ResponseApiLogin = await requestApiLogin.json()
+              console.log(ResponseApiLogin.data.access_token);
+
+              const token = await ResponseApiLogin.data.access_token
+              setToken(token)
+
+              localStorage.setItem("token", token)
+
+              fetch("http://localhost:8000/api/invoice/all", {
+                     method: "GET",
+                     headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`
+                     }
+              }).then(res => {
+                     console.log(res.json())
+              }).catch(err => console.log(err)
+              )
 
        }
-
        return (
               <AuthLayouts>
                      {/* <!-- Heading Login Form --> */}

@@ -9,41 +9,49 @@ import GoogleIcon from "../../public/google.svg"
 
 // import next router
 import { useRouter } from 'next/router'
+import Cookie from "js-cookie"
+import Login from './login'
 
 const Register = () => {
        // initialize router redirect
        const router = useRouter()
-
        const [notification, setNotification] = useState("")
-
-       const onDataIsSubmit = () => {
-              setTimeout(() => {
-                     setNotification("Loading....")
-              }, 2000)
-              setTimeout(() => {
-                     setNotification("Successfully Registered")
-              }, 4000)
-       }
 
        const [name, setName] = useState("")
        const [email, setEmail] = useState("")
        const [password, setPassword] = useState("")
 
+       const body = JSON.stringify({
+              name, email, password
+       })
+
+       // onsubmit handler
        const OnSubmitHandler = async (event: any) => {
               event.preventDefault()
 
-              await axios.post("http://localhost:8000/api/register", {
-                     name: name,
-                     email: email,
-                     password: password
-              }, {
+              // post data with header 
+              const RequestApiLogin = await fetch("http://localhost:8000/api/register", {
+                     method: "POST",
                      headers: {
                             Accept: "application/json",
-                            "Content-Type": "application/json",
+                            "Content-Type": "application/json"
                      },
-              }).then(response => {
-                     console.log(response)
-              }).catch(err => console.log(err))
+                     body: body
+              })
+
+              /*if (!RequestApiLogin.ok) {
+                     setNotification(`Failed Authentication ${RequestApiLogin.status}`)
+              }*/
+
+              const ResponseApiLogin = await RequestApiLogin.json()
+              console.log(ResponseApiLogin.meta.message);
+
+              if (ResponseApiLogin.meta.code === 200) {
+                     router.push("/admin/dashboard")
+                     setNotification(`${ResponseApiLogin.meta.message}`)
+              }
+
+              Cookie.set('token', ResponseApiLogin.token)
        }
 
        return (
@@ -79,7 +87,7 @@ const Register = () => {
                                           </label>
                                    </div>
                                    {/* <!-- Register Button --> */}
-                                   <button onClick={onDataIsSubmit} type="submit" className="mb-4 w-full text-center font-bold ml-0 no-underline inline-block px-4 py-3 leading-none bg-blue-800 border-blue-800 border rounded text-white hover:border-transparent hover:bg-white hover:text-blue-800 mt-4 sm:mt-0">
+                                   <button type="submit" className="mb-4 w-full text-center font-bold ml-0 no-underline inline-block px-4 py-3 leading-none bg-blue-800 border-blue-800 border rounded text-white hover:border-transparent hover:bg-white hover:text-blue-800 mt-4 sm:mt-0">
                                           <p className="text-lg font-bold">Register</p>
                                    </button>
                                    <p className="font-bold text-xl text-blue-700 my-2">Status : {notification}</p>
@@ -102,4 +110,3 @@ const Register = () => {
 }
 
 export default Register
-
