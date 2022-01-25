@@ -22,7 +22,7 @@ export const warningNotify = () => toast("Loading ...", {
               color: 'black'
        }
 });
-export const dangerNotify = () => toast.error('This is Danger Notification Toaster');
+export const DangerNotify = () => toast.error('This is Danger Notification Toaster');
 
 // toast notify component
 const ToastNotify = () => {
@@ -39,7 +39,7 @@ const ToastNotify = () => {
                             </div>
 
                             <div className='flex justify-between mr-2'>
-                                   <button onClick={dangerNotify} className='py-2 bg-[#e63131] hover:bg-[#bd1b1b] text-white px-4 rounded-md flex items-center font-bold'>Danger Toaster</button>
+                                   <button onClick={DangerNotify} className='py-2 bg-[#e63131] hover:bg-[#bd1b1b] text-white px-4 rounded-md flex items-center font-bold'>Danger Toaster</button>
                             </div>
 
                             <div className='flex justify-between mr-2'>
