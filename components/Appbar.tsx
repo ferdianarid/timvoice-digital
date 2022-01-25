@@ -44,6 +44,7 @@ const LinkAction = ({ imgIcon, alt, children }: LinkActionProps) => {
 
 // modal create invoice component
 const ModalInvoice = () => {
+       // initial state
        const [isOpen, setIsOpen] = useState(false)
 
        const closeModal = () => {
