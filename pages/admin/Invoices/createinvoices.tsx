@@ -16,7 +16,10 @@ import temaThree from "../../../public/tema3.png"
 import temaFour from "../../../public/tema4.png"
 
 import { DangerNotify } from '../../../components/partials/ToastNotify'
+
 import Router, { useRouter } from 'next/router'
+import PrimaryButton from '../../../components/partials/PrimaryButton'
+import SecondaryButton from '../../../components/partials/SecondaryButton'
 
 // pages create invoices
 const createInvoices: NextPage = () => {
@@ -42,6 +45,9 @@ const createInvoices: NextPage = () => {
        const [layananBank, setLayananBank] = useState("")
        const [namaPemilik, setNamaPemilik] = useState("")
        const [nomorRekening, setNomorRekening] = useState("")
+       const [catatanClient, setCatatanClient] = useState("")
+       const [namaPenerbit, setNamaPenerbit] = useState("")
+       const [jabatanPenerbit, setJabatanPenerbit] = useState("")
        const [randomNumber, setRandomNumber] = useState(1000)
 
        useEffect(() => {
@@ -51,26 +57,29 @@ const createInvoices: NextPage = () => {
        }, [])
 
        const data = JSON.stringify({
-              idInvoices: randomNumber,
-              tarif: tarif,
+              no_tagihan: randomNumber,
+              item_tarif: tarif,
               jobs: jobs,
               jumlah: jumlah,
-              quantity: quantity,
-              invoiceType: invoiceType,
-              invoiceName: invoiceName,
-              durationStart: durationStart,
-              durationEnd: durationEnd,
-              dateIssued: dateIssued,
-              dateDue: dateDue,
-              currencyType: currencyType,
-              itemsDescriptions: itemsDescriptions,
-              totalValue: totalValue,
-              downPayment: downPayment,
-              jumlahDownPayment: jumlahDownPayment,
-              valueDownPayment: valueDownPayment,
+              item_qty: quantity,
+              title: invoiceName,
+              type_id: invoiceType,
+              duration_start: durationStart,
+              duration_end: durationEnd,
+              date_issued: dateIssued,
+              date_due: dateDue,
+              currency_id: currencyType,
+              item_description: itemsDescriptions,
+              item_total: totalValue,
+              term_title: downPayment,
+              term_percent: jumlahDownPayment,
+              term_total: valueDownPayment,
               layananBank: layananBank,
               namaPemilik: namaPemilik,
-              nomorRekening: nomorRekening
+              nomorRekening: nomorRekening,
+              notes: catatanClient,
+              publisher_name: namaPenerbit,
+              publisher_position: jabatanPenerbit
        })
 
        const sendData = async (event: SyntheticEvent) => {
@@ -79,15 +88,17 @@ const createInvoices: NextPage = () => {
               // check token in local storage
               const access_token = localStorage.getItem("token")
 
-              const PostCreateInvoices = await fetch("http://localhost:8000/api/createInvoices", {
+              const PostCreateInvoices = await fetch("http://localhost:8000/api/invoice", {
                      method: "POST",
                      headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json",
-                            Authorization: `Bearer ${access_token}`
+                            Authorization: "Bearer 16|tvNnCHQiqz1QQ4HJ4kLCfInK7xIO1rigs3vxIpYw"
                      },
                      body: data
               })
+
+              console.log(data)
 
               // check data submit status
               if (!PostCreateInvoices.ok) {
@@ -100,7 +111,7 @@ const createInvoices: NextPage = () => {
               console.log(notification)
 
               // redirect user to dashboard page
-              router.push("/admin/dashboard")
+              // router.push("/admin/dashboard")
        }
 
        return (
@@ -203,7 +214,6 @@ const createInvoices: NextPage = () => {
                                                  </div>
                                           </div>
                                    </div>
-
                                    {/* Informasi Dasar */}
                                    <div className="w-full bg-white my-8 h-auto rounded-lg px-10 pb-8">
                                           <div className="flex justify-between items-center">
@@ -241,7 +251,7 @@ const createInvoices: NextPage = () => {
                                                  <div className="flex flex-col">
                                                         {/* Items Description */}
                                                         <textarea onChange={(event) => setItemDescriptions(event.target.value)} placeholder='Write text' className='p-4 border border-gray-200 rounded-sm my-4' id="" name="" rows={4} cols={0} />
-                                                        <button onClick={sendData} className='bg-blue-50 hover:bg-blue-100 rounded-sm py-2 px-4 text-sm font-bold text-blue-600 text-center'>Tambah Pekerjaan</button>
+                                                        <button className='bg-blue-50 hover:bg-blue-100 rounded-sm py-2 px-4 text-sm font-bold text-blue-600 text-center'>Tambah Pekerjaan</button>
                                                  </div>
                                           </div>
 
@@ -345,12 +355,16 @@ const createInvoices: NextPage = () => {
                                                  <div className='flex items-center'>
                                                  </div>
                                                  <div className='mr-10 flex items-center justify-end'>
-
                                                  </div>
                                                  <div className=' flex items-center'>
                                                         {/* Tambah Jangka Waktu */}
                                                         <button className='w-[70%] bg-blue-50 hover:bg-blue-100 rounded-sm py-2 px-4 text-sm font-bold text-blue-600 text-center'>Tambah Jangka Waktu</button>
                                                  </div>
+                                          </div>
+                                          {/* Catatan untuk klien */}
+                                          <div className="mt-4">
+                                                 <p className="text-md font-bold text-gray-900">Catatan Untuk Klien</p>
+                                                 <textarea onChange={event => setCatatanClient(event.target.value)} name="notes" className='mt-4 border border-gray-200 p-3 rounded-sm' placeholder='Tuliskan catatan anda disini' id="" cols={30} rows={8} />
                                           </div>
                                    </div>
 
@@ -459,33 +473,51 @@ const createInvoices: NextPage = () => {
                                                  <Image src={temaFour} />
                                           </div>
 
-                                          <div className="w-full flex justify-between items-center my-10">
-                                                 <div className="w-full border border-gray-600">
+                                          <div className="w-full flex justify-between items-start my-10">
+                                                 <div className="w-full">
                                                         <p className="font-bold text-md">Tagihan Untuk : </p>
-                                                        <p className="font-normal text-sm">Udin Alexander</p>
-                                                        <p className="font-normal text-sm">Sample Components</p>
-                                                        <p className="font-normal text-sm">Client Address</p>
-                                                        <p className="font-normal text-sm">client@gmail.com</p>
+                                                        <p className="font-normal text-sm my-2">Udin Alexander</p>
+                                                        <p className="font-normal text-sm my-2">Sample Components</p>
+                                                        <p className="font-normal text-sm my-2">Client Address</p>
+                                                        <p className="font-normal text-sm my-2">client@gmail.com</p>
                                                  </div>
-                                                 <div className="w-full border border-gray-600">
+                                                 <div className="w-full">
                                                         <p className="font-normal text-md">Penerbit Tagihan</p>
-                                                        <p className="font-normal text-sm">Nama Penerbit</p>
-                                                        <input type="text" name="namapenerbit" id="namapenerbit" placeholder='Nama Penerbit' />
-
-                                                        <p className="font-normal text-sm">Nama Penerbit</p>
-                                                        <input type="text" name="jabatanpenerbit" id="jabatanpenerbit" placeholder='Jabatan Penerbit' />
+                                                        <p className="font-normal text-sm my-2">Nama Penerbit</p>
+                                                        <input onChange={event => setNamaPenerbit(event.target.value)} type="text" className='my-2 p-1 border border-gray-200 rounded-sm' name="namapenerbit" id="namapenerbit" placeholder='Nama Penerbit' />
+                                                        <p className="font-normal text-sm my-2">Jabatan Penerbit</p>
+                                                        <input onChange={event => setJabatanPenerbit(event.target.value)} type="text" className="my-1 p-1 border border-gray-200 rounded-sm" name="jabatanpenerbit" id="jabatanpenerbit" placeholder='Jabatan Penerbit' />
                                                  </div>
-                                                 <div className="w-full border border-gray-600">
+                                                 <div className="w-full">
                                                         {/*  Enable Pengingat */}
                                                         <div className="flex justify-between items-center">
                                                                <p className="font-normal text-md">Pengingat Tagihan</p>
-                                                               <input type="checkbox" name="pengingat" id="pengingat" />
+                                                               <input type="checkbox" className="my-1 p-1" name="pengingat" id="pengingat" />
                                                         </div>
-                                                        <div className="p-4 bg-blue-200 rounded-md text-sm font-normal text-gray-800">
+                                                        <div className="mt-4 p-4 bg-blue-400 text-white rounded-md text-xs font-normal">
                                                                <p>Pengingat akan dikirimkan ke klien sesuai dengan jangka waktu  pembayaran.</p>
                                                         </div>
                                                  </div>
                                           </div>
+                                          <div className="">
+                                                 <p className="font-bold text-gray-900 mb-4">Lampiran</p>
+                                                 <div className="flex flex-col">
+                                                        <input className='mt-2' type="file" name="lampiran" id="lampiran" />
+                                                        <input className='mt-2' type="file" name="lampiran" id="lampiran" />
+                                                 </div>
+                                          </div>
+                                   </div>
+                                   {/* Button Action */}
+                                   <div className="flex gap-x-4 justify-end">
+                                          {/* Button Simpan Draft */}
+                                          <SecondaryButton>Simpan Draft</SecondaryButton>
+                                          {/* Button Kirim */}
+                                          <button onClick={sendData} className='py-2 bg-[#405DC7] hover:bg-[#324daf] text-white px-4 rounded-md flex items-center font-bold'>
+                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="white">
+                                                        <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                                        <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                                                 </svg>Tinjau dan Kirim
+                                          </button>
                                    </div>
                             </div>
                      </DashboardLayouts>
