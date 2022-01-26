@@ -1,6 +1,7 @@
+import React, { SyntheticEvent, useState, useEffect } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { SyntheticEvent, useEffect } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 
 // import Auth Layout Pages
 import AuthLayouts from '../../layouts/AuthLayouts'
@@ -10,17 +11,23 @@ import GoogleIcon from "../../public/google.svg"
 
 // Login Pages
 const Login: NextPage = () => {
-       const [email, setEmail] = React.useState("")
-       const [password, setPassword] = React.useState("")
-       const [token, setToken] = React.useState("")
+       const [email, setEmail] = useState("")
+       const [password, setPassword] = useState("")
+       const [token, setToken] = useState("")
 
        const router = useRouter()
-
        const data = JSON.stringify({ email, password })
+
+       useEffect(() => {
+              if (localStorage.getItem("token")) {
+                     router.push("/admin/dashboard")
+              }
+       }, [])
 
        const SubmittingData = async (event: SyntheticEvent) => {
               event.preventDefault()
 
+              // post request login
               const requestApiLogin = await fetch("http://localhost:8000/api/login", {
                      method: "POST",
                      headers: {
@@ -30,30 +37,35 @@ const Login: NextPage = () => {
                      body: data
               })
 
-              if (!requestApiLogin.ok) console.log(
-                     (`Failed Authentication ${requestApiLogin.status}`)
-              )
-              const ResponseApiLogin = await requestApiLogin.json()
-              console.log(ResponseApiLogin.data.access_token);
+              if (!requestApiLogin.ok) {
+                     // toast error response
+                     toast.error(`Failed Authentication ${requestApiLogin.status}`)
+              } else {
+                     const ResponseApiLogin = await requestApiLogin.json()
+                     // log success response
+                     console.log(ResponseApiLogin)
 
-              const token = await ResponseApiLogin.data.access_token
-              setToken(token)
+                     // log access token
+                     console.log(ResponseApiLogin.data.access_token);
 
-              localStorage.setItem("token", token)
+                     // get access token from login response
+                     const token = await ResponseApiLogin.data.access_token
 
-              fetch("http://localhost:8000/api/invoice/all", {
-                     method: "GET",
-                     headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${token}`
-                     }
-              }).then(res => {
-                     console.log(res.json())
-              }).catch(err => console.log(err)
-              )
+                     // set token to token state
+                     setToken(token)
 
+                     // store token to local storage
+                     localStorage.setItem("token", token)
+
+                     toast.success("Successfully Login")
+
+                     // redirect user to dashboard page after 2s
+                     setTimeout(() => {
+                            router.push("/admin/dashboard")
+                     }, 2000)
+              }
        }
+
        return (
               <AuthLayouts>
                      {/* <!-- Heading Login Form --> */}
@@ -94,6 +106,20 @@ const Login: NextPage = () => {
                             {/* <!-- Forgot Password --> */}
                             <a href="/forgot-password" className="text-blue-800 text-sm">Forgot Password?</a>
                      </form>
+                     <Toaster toastOptions={{
+                            success: {
+                                   style: {
+                                          background: 'green',
+                                          color: 'white'
+                                   },
+                            },
+                            error: {
+                                   style: {
+                                          background: 'red',
+                                          color: 'white'
+                                   },
+                            },
+                     }} />
               </AuthLayouts>
        )
 }
