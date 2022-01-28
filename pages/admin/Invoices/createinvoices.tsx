@@ -1,35 +1,37 @@
 import React, { SyntheticEvent, useState, useEffect } from 'react'
-import Head from 'next/head'
+import Router, { useRouter } from 'next/router'
+import Image from 'next/image'
 import { NextPage } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
-import Image from "next/image"
 
+// import images
 import LogoUploadImage from "../../../public/invoices/UploadLogo.png"
 import CoverImage from "../../../public/invoices/UploadCover.png"
 
 // import dashboard layouts
 import DashboardLayouts from '../../../layouts/DashboardLayouts'
 
+//  select theme
 import temaOne from "../../../public/tema1.png"
 import temaTwo from "../../../public/tema2.png"
 import temaThree from "../../../public/tema3.png"
 import temaFour from "../../../public/tema4.png"
 
-import { DangerNotify } from '../../../components/partials/ToastNotify'
-
-import Router, { useRouter } from 'next/router'
-import PrimaryButton from '../../../components/partials/PrimaryButton'
+// import button and access token
 import SecondaryButton from '../../../components/partials/SecondaryButton'
+import { access_token } from "../../../library/token"
+
 
 // pages create invoices
 const createInvoices: NextPage = () => {
        const router = useRouter()
        const [notification, setNotification] = useState("")
 
-       const [tarif, setTarif] = useState("")
+       const [tarif, setTarif] = useState(0)
        const [jobs, setJobs] = useState("")
-       const [jumlah, setJumlah] = useState("")
-       const [quantity, setQuantity] = useState("")
+       const [jumlah, setJumlah] = useState(0)
+       const [quantity, setQuantity] = useState(0)
        const [invoiceType, setInvoiceType] = useState("")
        const [invoiceName, setInvoiceName] = useState("")
        const [durationStart, setDurationStart] = useState("")
@@ -39,9 +41,18 @@ const createInvoices: NextPage = () => {
        const [currencyType, setCurrencyType] = useState("")
        const [itemsDescriptions, setItemDescriptions] = useState("")
        const [totalValue, setTotalValue] = useState("")
+
        const [downPayment, setDownPayment] = useState("")
        const [jumlahDownPayment, setJumlahDownPayment] = useState("")
        const [valueDownPayment, setValueDownPayment] = useState("")
+
+       const [downPayments, setDownPayments] = useState("")
+       const [jumlahDownPayments, setJumlahDownPayments] = useState("")
+       const [valueDownPayments, setValueDownPayments] = useState("")
+
+       const [diskon, setDiskon] = useState(0)
+       const [pajak, setPajak] = useState(0)
+
        const [layananBank, setLayananBank] = useState("")
        const [namaPemilik, setNamaPemilik] = useState("")
        const [nomorRekening, setNomorRekening] = useState("")
@@ -50,37 +61,64 @@ const createInvoices: NextPage = () => {
        const [jabatanPenerbit, setJabatanPenerbit] = useState("")
        const [randomNumber, setRandomNumber] = useState(1000)
 
+       // mount after page has reload
        useEffect(() => {
               const valueNumber: number = Math.floor(1000 + Math.random() * 5000)
               setRandomNumber(valueNumber)
               console.log(valueNumber)
        }, [])
 
-       const data = JSON.stringify({
+       // calculate total invoice price
+       const sumInvoicePrice: number = quantity * tarif | 0
+       console.log(`Bruto Price : ${sumInvoicePrice}`)
+
+       // total discount
+       const discountPrice: number = sumInvoicePrice * ((diskon + pajak) / 100) | 0
+       console.log(`Discount : ${discountPrice}`)
+
+       // value price after discount
+       const totalInvoicePrice = sumInvoicePrice - discountPrice
+       console.log(`Price after Discount : ${totalInvoicePrice}`)
+
+       // Object
+       const data: Object = {
+              // Section One
               no_tagihan: randomNumber,
-              item_tarif: tarif,
-              jobs: jobs,
-              jumlah: jumlah,
-              item_qty: quantity,
               title: invoiceName,
               type_id: invoiceType,
+              currency_id: currencyType,
               duration_start: durationStart,
               duration_end: durationEnd,
               date_issued: dateIssued,
               date_due: dateDue,
-              currency_id: currencyType,
+
+              // Section Two || Jobs Invoice
+              item_name: jobs,
+              item_qty: quantity,
+              item_total: tarif,
+              jumlah: totalInvoicePrice,
               item_description: itemsDescriptions,
-              item_total: totalValue,
+
+              // Section Three 
               term_title: downPayment,
               term_percent: jumlahDownPayment,
               term_total: valueDownPayment,
+
+              // Section Four
+              term_title1: downPayments,
+              term_percent1: jumlahDownPayments,
+              term_total1: valueDownPayments,
+              add_percent1: diskon,
+              add_percent2: pajak,
+
+              // Section Five
               layananBank: layananBank,
               namaPemilik: namaPemilik,
               nomorRekening: nomorRekening,
               notes: catatanClient,
               publisher_name: namaPenerbit,
               publisher_position: jabatanPenerbit
-       })
+       }
 
        const sendData = async (event: SyntheticEvent) => {
               event.preventDefault()
@@ -88,16 +126,18 @@ const createInvoices: NextPage = () => {
               // check token in local storage
               const access_token = localStorage.getItem("token")
 
+              // function post data invoices
               const PostCreateInvoices = await fetch("http://localhost:8000/api/invoice", {
                      method: "POST",
                      headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json",
-                            Authorization: "Bearer 16|tvNnCHQiqz1QQ4HJ4kLCfInK7xIO1rigs3vxIpYw"
+                            Authorization: `Bearer ${access_token}`
                      },
-                     body: data
+                     // body: data
               })
 
+              // log data in console
               console.log(data)
 
               // check data submit status
@@ -127,7 +167,7 @@ const createInvoices: NextPage = () => {
                             <div className="w-[1240px] h-auto px-16 bg-blue-50">
                                    <p className="py-8">
                                           <Link href="/admin/invoices">Tagihan</Link>
-                                          <span className="font-bold"> Tagihan Logo Desain </span> /
+                                          <span className="font-bold"> Tagihan Logo Desain </span>
                                           <Link href="/admin/invoices/PreviewInvoice"> Preview Invoices </Link>
                                    </p>
                                    {/* Informasi Dasar */}
@@ -185,7 +225,10 @@ const createInvoices: NextPage = () => {
                                                         <div className="w-full">
                                                                {/* Jenis Tagihan */}
                                                                <h1 className="text-md font-bold pt-8 pb-4">Jenis Tagihan</h1>
-                                                               <input type="text" onChange={(event) => setInvoiceType(event.target.value)} name="invoiceType" className="pl-2 w-full border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Cari" autoComplete="on" />
+                                                               <select className='bg-white w-full border border-gray-200 rounded-sm p-2' onChange={(event) => setInvoiceType(event.target.value)} name="invoiceType">
+                                                                      <option value="1">Tagihan Satuan</option>
+                                                                      <option value="2">Tagihan Bulanan</option>
+                                                               </select>
                                                         </div>
                                                  </div>
                                           </div>
@@ -226,24 +269,24 @@ const createInvoices: NextPage = () => {
                                                         <div className="w-[70%]">
                                                                <h1 className="text-md font-bold pt-8 pb-4">Keterangan Pekerjaan</h1>
                                                                {/* Keterangan Pekerjaan */}
-                                                               <input type="text" name="keterangan" onChange={(event) => setJobs(event.target.value)} className="mr-2  pl-2 w-full border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Logo Desain Basic" autoComplete="on" />
+                                                               <input type="text" name="item_name" onChange={(event) => setJobs(event.target.value)} className="mr-2  pl-2 w-full border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Logo Desain Basic" autoComplete="on" />
                                                         </div>
                                                         <div className="w-[30%]">
                                                                <h1 className="text-md font-bold pt-8 pb-4">Qty</h1>
                                                                {/* Jumlah Quantity */}
-                                                               <input type="text" onChange={(event) => setQuantity(event.target.value)} name="quantity" className="pl-2 w-full border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="22" autoComplete="on" />
+                                                               <input type="text" onChange={(event) => setQuantity(parseInt(event.target.value))} name="quantity" className="pl-2 w-full border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="22" autoComplete="on" />
                                                         </div>
                                                  </div>
                                                  <div className="w-full flex justify-between gap-x-2">
                                                         <div className="w-[70%]">
                                                                <h1 className="text-md font-bold pt-8 pb-4">Tarif</h1>
                                                                {/* Jumlah Tarif */}
-                                                               <input type="text" onChange={(event) => setTarif(event.target.value)} name="tarif" className="w-[90%] mr-2  pl-2 border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="5000000" autoComplete="on" />
+                                                               <input type="text" onChange={(event) => setTarif(parseInt(event.target.value))} name="tarif" className="w-[90%] mr-2  pl-2 border border-gray-200 py-2 text-sm text-gray-500 bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="5000000" autoComplete="on" />
                                                         </div>
                                                         <div className="w-[30%]">
                                                                <h1 className="text-md font-bold pt-8 pb-4">Jumlah</h1>
                                                                {/*Jumlah */}
-                                                               <input type="text" onChange={(event) => setJumlah(event.target.value)} name="jumlah" className="w-full py-2 text-md font-bold text-black bg-white rounded-[4px] focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="5000000" autoComplete="on" />
+                                                               <h1 className="font-bold text-md mt-[5px]">{sumInvoicePrice}</h1>
                                                         </div>
                                                  </div>
                                           </div>
@@ -254,7 +297,6 @@ const createInvoices: NextPage = () => {
                                                         <button className='bg-blue-50 hover:bg-blue-100 rounded-sm py-2 px-4 text-sm font-bold text-blue-600 text-center'>Tambah Pekerjaan</button>
                                                  </div>
                                           </div>
-
                                           {/* Keterangan Pekerjaan */}
                                           <div className="grid grid-cols-3 grid-rows-3 mt-8 gap-4">
                                                  {/* Biaya Tambahan */}
@@ -274,59 +316,62 @@ const createInvoices: NextPage = () => {
                                                         <h1>Diskon</h1>
                                                  </div>
                                                  <div className='flex items-center'>
-                                                        <input type="text" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="0%" autoComplete="on" />
+                                                        <input onChange={event => setDiskon(parseInt(event.target.value))} type="text" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Diskon" autoComplete="on" />
                                                  </div>
                                                  {/* Empty Fields */}
                                                  <div className='mr-10 flex items-center justify-end'>
-                                                        <h1>-</h1>
+                                                        <h1 className='font-bold text-md'>{totalInvoicePrice}</h1>
                                                  </div>
                                                  {/* Pajak */}
                                                  <div className=' flex items-center'>
                                                         <h1>Pajak</h1>
                                                  </div>
                                                  <div className='flex items-center'>
-                                                        <input type="search" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="0%" autoComplete="on" />
+                                                        <input onChange={event => setPajak(parseInt(event.target.value))} type="text" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Pajak" autoComplete="on" />
                                                  </div>
                                                  {/* Empty Fields */}
                                                  <div className='mr-10 flex items-center justify-end'>
-                                                        <h1>-</h1>
+                                                        <h1 className='font-bold text-md'>{totalInvoicePrice}</h1>
                                                  </div>
                                                  {/* Heading Total*/}
                                                  <div className=' flex items-center'>
-                                                        <h1>Total</h1>
+                                                        <h1 className='font-bold text-md'>Total</h1>
                                                  </div>
                                                  <div className=''>
                                                  </div>
                                                  {/* Total  */}
                                                  <div className='mr-10 flex items-center justify-end'>
-                                                        <input onChange={(event) => setTotalValue(event.target.value)} type="text" name="total" className="w-[50%] rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="IDR 5.000.000" autoComplete="on" />
+                                                        <h1 className="font-bold text-md mt-[5px]">{totalInvoicePrice}</h1>
                                                  </div>
                                           </div>
 
                                           <h1 className='font-bold mt-6'>Jangka Waktu Pembayaran</h1>
                                           {/* Keterangan Pekerjaan */}
                                           <div className="grid grid-cols-3 grid-rows-4 mt-2 gap-4">
+                                                 {/* keterangan pekerjaan */}
                                                  <div className=' flex items-center'>
                                                         <h1 className='font-bold'>Keterangan Pekerjaan</h1>
                                                  </div>
+                                                 {/* labell presentase */}
                                                  <div className='flex items-center'>
                                                         <h1 className='font-bold'>Persentase</h1>
                                                  </div>
+                                                 {/* label jumlah */}
                                                  <div className='mr-10 flex items-center justify-end'>
                                                         <h1 className='font-bold'>Jumlah</h1>
                                                  </div>
 
                                                  {/* Down Payment */}
                                                  <div className=' flex items-start flex-col'>
-                                                        <input type="text" onChange={event => setDownPayment(event.target.value)} className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-semibold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Down Payment ( DP )" autoComplete="on" />
+                                                        <input type="text" onChange={event => setDownPayment(event.target.value)} name="dp" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-semibold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Down Payment ( DP )" autoComplete="on" />
                                                  </div>
                                                  {/* Jumlah Down Payment */}
                                                  <div className='flex items-center'>
-                                                        <input type="text" onChange={event => setJumlahDownPayment(event.target.value)} className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="50%" autoComplete="on" />
+                                                        <input type="text" onChange={event => setJumlahDownPayment(event.target.value)} name="jumlahdp" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="50%" autoComplete="on" />
                                                  </div>
                                                  {/* value total DP */}
                                                  <div className='mr-10 flex items-center justify-end'>
-                                                        <input type="text" onChange={event => setValueDownPayment(event.target.value)} className="w-[50%] rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="IDR 5.000.000" autoComplete="on" />
+                                                        <input type="text" onChange={event => setValueDownPayment(event.target.value)} name="valuedp" className="w-[50%] rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="IDR 5.000.000" autoComplete="on" />
                                                  </div>
 
                                                  <div className=' flex items-start flex-col'>
@@ -338,15 +383,15 @@ const createInvoices: NextPage = () => {
                                                  </div>
                                                  {/* Down Payment */}
                                                  <div className=' flex items-start flex-col'>
-                                                        <input type="text" name="query" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-semibold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Down Payment ( DP )" autoComplete="on" />
+                                                        <input type="text" onChange={event => setDownPayments(event.target.value)} name="dp" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-semibold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="Down Payment ( DP )" autoComplete="on" />
                                                  </div>
                                                  {/*  Jumlah DP*/}
                                                  <div className='flex items-center'>
-                                                        <input type="text" name="query" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="50%" autoComplete="on" />
+                                                        <input type="text" onChange={event => setJumlahDownPayments(event.target.value)} name="jumlahdp" className="w-[70%] border border-gray-200 rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="50%" autoComplete="on" />
                                                  </div>
                                                  {/* value total DP */}
                                                  <div className='mr-10 flex items-center justify-end'>
-                                                        <input type="text" name="query" className="w-[50%] rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="IDR 5.000.000" autoComplete="on" />
+                                                        <input type="text" onChange={event => setValueDownPayments(event.target.value)} name="valuedp" className="w-[50%] rounded-md py-2 text-md font-bold text-black bg-white pl-2 focus:outline-blue-800 focus:bg-white focus:text-gray-900" placeholder="IDR 5.000.000" autoComplete="on" />
                                                  </div>
 
                                                  <div className=' flex items-start flex-col'>
