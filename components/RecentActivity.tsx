@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
+// import axios
+import axios from "axios"
 
 // import  next image
 import Image from "next/image"
@@ -6,9 +9,24 @@ import Image from "next/image"
 // Interface Recent Activity Component
 import { InterfaceRecentActivity } from '../interfaces/RecentActivity'
 
+import { access_token } from "../library/token"
+
 // Recent Activity Component
 const RecentActivity = (props: InterfaceRecentActivity) => {
        const { srcImage, altImage, title, subtitle, spanText, spanTextTwo, timestamp } = props
+
+       // get recent activity
+       useEffect(() => {
+              const activity = axios.get("http://localhost:8000/api/invoice/activity", {
+                     headers: {
+                            Authorization: `Bearer ${access_token}`
+                     }
+              })
+                     .then(response => {
+                            console.log(response.data.data)
+                     })
+                     .catch(error => console.log(error))
+       }, [])
        return (
               <React.Fragment>
                      <div className="py-4 flex hover:bg-blue-50 hover:rounded-lg hover:cursor-pointer">
