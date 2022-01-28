@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import NavbarAuth from "../components/NavbarAuth"
+import NavbarAuth from "../components/organism/NavbarAuth"
 // interface Auth Layout
 interface AuthLayoutInterfaces {
        children: ReactNode

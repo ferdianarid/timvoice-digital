@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react'
 
 // import Sidebar component
-import Sidebar from "../components/Sidebar"
+import Sidebar from "../components/organism/Sidebar"
 
 // import Appbar components
-import Appbar from "../components/Appbar"
+import Appbar from "../components/organism/Appbar"
 
 // interface dashboard layout
 interface DashboardInterface {

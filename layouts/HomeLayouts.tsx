@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 
 // import Navbar Component
-import Navbar from "../components/Navbar"
+import Navbar from "../components/organism/Navbar"
 
 // interface Homepage Layout
 interface InterfaceHomepage {
