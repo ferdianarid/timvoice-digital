@@ -25,7 +25,7 @@ import { successNotify } from '../../../components/partials/ToastNotify'
 import { Toaster } from 'react-hot-toast'
 
 // import modals export
-import ModalExport from '../../../components/ModalExport'
+import ModalExport from '../../../components/moleculs/ModalExport'
 
 // Preview Invoices
 const PreviewInvoice: NextPage = () => {

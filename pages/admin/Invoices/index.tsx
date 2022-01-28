@@ -11,19 +11,19 @@ import Link from 'next/link'
 import DashboardLayouts from '../../../layouts/DashboardLayouts'
 
 // import Profile Components
-import { Profile } from '../../../components/content/Profile'
+import { Profile } from '../../../components/organism/Profile'
 
 // import Tables Components
-import Tables from '../../../components/Tables'
+import Tables from '../../../components/organism/Tables'
 
 // import Download Components
-import DownloadOption from '../../../components/DownloadOption'
+import DownloadOption from '../../../components/moleculs/DownloadOption'
 
 // import delete option
-import DeleteOption from '../../../components/DeleteOption'
+import DeleteOption from '../../../components/moleculs/DeleteOption'
 
 // import Export Component
-import ExportInvoice from '../../../components/ExportInvoice'
+import ExportInvoice from '../../../components/moleculs/ExportInvoice'
 
 // Invoices Page
 const Invoices: NextPage = () => {

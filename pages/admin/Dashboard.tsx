@@ -7,11 +7,11 @@ import Link from "next/link"
 import Image from "next/image"
 
 // Import Components
-import RecentActivity from '../../components/RecentActivity'
-import RecentInvoices from '../../components/RecentInvoices'
-import { Profile, ProfileCard } from "../../components/content/Profile"
-import Sidebar from "../../components/Sidebar"
-import Appbar from "../../components/Appbar"
+import RecentActivity from '../../components/organism/RecentActivity'
+import RecentInvoices from '../../components/organism/RecentInvoices'
+import { Profile, ProfileCard } from "../../components/organism/Profile"
+import Sidebar from "../../components/organism/Sidebar"
+import Appbar from "../../components/organism/Appbar"
 
 // import Dashboard Layouts
 // import DashboardLayouts from '../../layouts/DashboardLayouts'
